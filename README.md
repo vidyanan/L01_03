@@ -3,7 +3,7 @@
 ## Presentations
 In here is the various HTML, images, and other files associated with the HTML page used for presentations
 It is split up into:
-- main.html
+- main.html (please open this html page to view all documents and presentations)
   - Html for the Main Page
 - extra
   - miscellaneous documents
