@@ -1,16 +1,15 @@
 # L01_03
 
 ## Presentations
-In here is the various HTML, images, and other files associated with the HTML page used for presentations
-It is split up into:
+In here is the various HTML, images, and other files associated with the HTML page used for presentations and documentations.
 - main.html (please open this html page to view all documents and presentations)
-  - Html for the Main Page
-- extra
-  - miscellaneous documents
+  - html for the main page
 - links
-  - Location of files linked to by the main page
+  - location of files linked to by the main page
+- links/extra
+  - miscellaneous documents
 - links/pictures
-  - Location of pictures linked to all html pages
+  - location of pictures linked to all html pages
 
 ## Meetings.txt
 This file is used to keep track of meetings that have occured
