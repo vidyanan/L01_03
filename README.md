@@ -9,6 +9,8 @@ It is split up into:
   - miscellaneous documents
 - links
   - Location of files linked to by the main page
+- links/pictures
+  - Location of pictures linked to all html pages
 
 ## Meetings.txt
 This file is used to keep track of meetings that have occured
