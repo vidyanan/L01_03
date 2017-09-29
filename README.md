@@ -7,7 +7,7 @@ In here is the various HTML, images, and other files associated with the HTML pa
 - links
   - location of files linked to by the main page
 - links/extra
-  - miscellaneous documents
+  - draft documents and other miscellaneous files
 - links/pictures
   - location of pictures linked to all html pages
 
