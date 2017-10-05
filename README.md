@@ -10,14 +10,10 @@ In here is the various HTML, images, and other files associated with the HTML pa
   - location of pictures linked to all html pages
   
   
-- links/team.html
-- links/teammembers.html
-- links/meal.html
-- links/teamagreement.html
+- links/team.html, links/teammembers.html, links/meal.html, links/teamagreement.html
 	- Deliverable 1, due Sept 25, (please open main.html and all links will be visible from their)
 
-- links/personas.html
-- links/userstories.html
+- links/personas.html, links/userstories.html
 	- Deliverable 2, due Oct 16, (please open main.html and all links will be visible from their)
 ## Meetings.txt
 This file is used to keep track of meetings that have occured
