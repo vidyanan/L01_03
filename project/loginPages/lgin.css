@@ -6,23 +6,34 @@
   75%{background-color: darkblue;}
   100%{background-color: blue;}
 }
-
+.InsTA:active{
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+ .student:active {
+  background-color: blue;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 /* -----------------------------TA/Instructor division---------------------------- */
 .InsTA{
   /* size and position */
   position: relative;
   width: 550px;
   height: 250px;
-  left: 185px;
-  top: 0px;
+  left: 300px;
+  top: 150px;
 
   /* appearance */
+  background: rgba(226, 226, 20, .3);
   border-radius: 90px;
-  background: rgba(20, 56, 111, .5);
-  border-color: red;
-  box-shadow: 5px 5px powderblue;
+  border-width: 7px;
+  border-color: yellow;
+  box-shadow: 5px 5px rgb(154,155,41);
 
   /* text style */
+  font-size: 50px;
 }
 
 /* ---------------------------- Student division --------------------------------*/
@@ -31,28 +42,33 @@
   position: relative;
   width: 550px;
   height: 250px;
-  left: 200px;
-  top: 0px;
+  left: 350px;
+  top: 150px;
   
   /* appearance */
+  background: rgba(17, 115, 227, .3);
   border-radius: 90px;
-  background: rgba(111, 56, 20, .5);
+  border-width: 7px;
   border-color: blue;
-  box-shadow: 5px 5px powderblue;
+  box-shadow: 5px 5px darkblue;
   
   /* text style */
-  font-size: 15px;
+  font-size: 50px;
 }
 
 .top{
-  width: 100%;
-  height: 350px;
-  border-color: blue;
+  width: 900px;
+  height: 250px;
+  border-radius: 90px;
   background-image: url("top1.png");
   background-repeat: no-repeat;
   background-size: contain;
-
+  opacity: 0.9;
+  font-size:78px;
+  color: red;
+  
 }
+
 body {
     background-image: url("GeneralBackground.jpg");
     background-repeat: no-repeat;
