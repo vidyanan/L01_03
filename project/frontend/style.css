@@ -119,7 +119,7 @@ div.lginFooter{
 .navbar {
 	position: fixed;
 	list-style-type: none;
-    margin: 0;
+    margin: 0px;
     padding: 0;
     width: 100%;
     top: 0;
@@ -128,9 +128,6 @@ div.lginFooter{
     box-shadow: 5px 5px 5px grey;
 }
 
-h1 {
-	text-align: center;
-}
 
 .student-info {
 	height: 100px;
