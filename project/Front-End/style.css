@@ -6,58 +6,75 @@
   75%{background-color: darkblue;}
   100%{background-color: blue;}
 }
-
-/* -----------------------------TA/Instructor division---------------------------- */
-.InsTA{
-  /* size and position */
-  position: relative;
-  width: 550px;
-  height: 250px;
-  left: 185px;
-  top: 0px;
-
-  /* appearance */
-  border-radius: 90px;
-  background: rgba(20, 56, 111, .5);
-  border-color: red;
-  box-shadow: 5px 5px powderblue;
-
-  /* text style */
+/* ----@#$@#$@#$--------------Login Pages------@#$@#$@#$-----------------------------------*/
+/* -- login pages' body--*/
+.generalLogin {
+    background-image: url("./Assets/GeneralBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
-body {
-    background-image: url("GeneralBackground.jpg");
+.studentLogin{
+    background-image: url("./Assets/StudentBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.InsTALogin{
+    background-image: url("./Assets/InsTABackground.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* ---------------------------- Student division --------------------------------*/
-.student{
+/* ---------TA/Instructor button----- */
+.InsTAButton{
   /* size and position */
   position: relative;
   width: 550px;
   height: 250px;
-  left: 200px;
-  top: 0px;
-  
+  left: 300px;
+  top: 150px;
+
   /* appearance */
+  background: rgba(226, 226, 20, .3);
   border-radius: 90px;
-  background: rgba(111, 56, 20, .5);
-  border-color: blue;
-  box-shadow: 5px 5px powderblue;
-  
+  border-width: 7px;
+  border-color: yellow;
+  box-shadow: 5px 5px rgb(154,155,41);
+
   /* text style */
-  font-size: 15px;
+  font-size: 50px;
 }
 
-.top{
-  width: 100%;
-  height: 350px;
+
+/* ---------- Student button----------*/
+.studentButton{
+  /* size and position */
+  position: relative;
+  width: 550px;
+  height: 250px;
+  left: 350px;
+  top: 150px;
+  
+  /* appearance */
+  background: rgba(17, 115, 227, .3);
+  border-radius: 90px;
+  border-width: 7px;
   border-color: blue;
-  background-image: url("top1.png");
+  box-shadow: 5px 5px darkblue;
+  
+  /* text style */
+  font-size: 50px;
+}
+/*--general login page topside content*/
+.GeneralLoginTop{
+  width: 900px;
+  height: 250px;
+  border-radius: 90px;
+  background-image: url("./Assets/top1.png");
   background-repeat: no-repeat;
   background-size: contain;
-
+  opacity: 0.9;
+  font-size:78px;
+  color: red;
 }
 
 
@@ -116,6 +133,9 @@ div.lginFooter{
 
 }
 
+
+/*----!@#!@$$!@#$ --End of Login pages------ !@#@#%!@#%--------------------------------------------*/
+ 
 .navbar {
 	position: fixed;
 	list-style-type: none;
@@ -205,3 +225,4 @@ div.lginFooter{
     position:relative;
     box-shadow: 5px 5px 5px grey;
 }
+
