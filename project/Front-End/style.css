@@ -1,0 +1,207 @@
+/* animations */
+@keyframes background_clr_chg{
+  0% {background-image: url('top1.png');}
+  25%{background-color: darkblue;}
+  50%{background-color: powderblue;}
+  75%{background-color: darkblue;}
+  100%{background-color: blue;}
+}
+
+/* -----------------------------TA/Instructor division---------------------------- */
+.InsTA{
+  /* size and position */
+  position: relative;
+  width: 550px;
+  height: 250px;
+  left: 185px;
+  top: 0px;
+
+  /* appearance */
+  border-radius: 90px;
+  background: rgba(20, 56, 111, .5);
+  border-color: red;
+  box-shadow: 5px 5px powderblue;
+
+  /* text style */
+}
+
+body {
+    background-image: url("GeneralBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ---------------------------- Student division --------------------------------*/
+.student{
+  /* size and position */
+  position: relative;
+  width: 550px;
+  height: 250px;
+  left: 200px;
+  top: 0px;
+  
+  /* appearance */
+  border-radius: 90px;
+  background: rgba(111, 56, 20, .5);
+  border-color: blue;
+  box-shadow: 5px 5px powderblue;
+  
+  /* text style */
+  font-size: 15px;
+}
+
+.top{
+  width: 100%;
+  height: 350px;
+  border-color: blue;
+  background-image: url("top1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+}
+
+
+input:focus {
+    border: 3px solid #555;
+}
+input[type=text], input[type=password] {
+    font-size: 26px;
+    width:700px;
+    padding: 6px 6px;
+    margin: 3px 0;
+    border: none;
+    border-bottom: 2px solid blue;
+}
+input[type=submit], input[type=button]{
+    background-color: MediumSeaGreen;
+    font-size: 26px;
+    width: 44%;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+div.lgin{
+    position: relative;
+    left: 560px;
+    width:750px;
+
+    border: 4px solid blue;
+    border-radius: 14px;
+    box-shadow: 10px 10px darkblue;
+}
+div.lginHeader{
+   font-size: 45px;
+   font-weight: bold;
+   background: rgba(87,182,255,.5);
+   margin: 0 auto; 
+   width:750px;
+
+}
+div.lginMain{
+   font-size: 30px;
+   background: rgba(59,182,255,.5);
+   margin: 0 auto; 
+   width:750px;
+
+}
+div.lginFooter{
+   font-size: 15px;
+   background: rgba(17,162,215,.5);
+   margin: auto; 
+   width:750px;
+
+}
+
+.navbar {
+	position: fixed;
+	list-style-type: none;
+    margin: 0px;
+    padding: 0;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
+    background-color: #333;
+    box-shadow: 5px 5px 5px grey;
+}
+
+
+.student-info {
+	height: 100px;
+	width: 80%;
+}
+
+.ta-info {
+	height: 100px;
+	width: 80%;
+}
+
+.sidebar {
+	position: fixed;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    height: 100%;
+    top: 50px;
+    background-color: #f1f1f1;
+    overflow: auto;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.button-side {
+	text-align: center;
+    color: #000;
+    padding: 14px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.button-top {
+	text-align: center;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    display: inline;
+	float: left;
+}
+
+.button-side:hover {
+    background-color: #555;
+    color: white;
+}
+
+.button-top:hover {
+    background-color: black;
+    color: white;
+}
+
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.container {
+    width:100%;
+    padding-right:15px;
+    padding-left:15px;
+    padding-top:10px;
+    margin-right:auto;
+    margin-left:15%;
+    margin-top:55px;
+}
+
+.container-text {
+    padding:2rem 1rem;
+    margin-bottom:2rem;
+    background-color:#e9ecef;
+    border-radius:.3rem;
+    -ms-flex:0 0 66.666667%;
+    flex:0 0 66.666667%;
+    max-width:66.666667%;
+    position:relative;
+    box-shadow: 5px 5px 5px grey;
+}
