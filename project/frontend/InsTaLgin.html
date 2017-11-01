@@ -1,19 +1,20 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang = "en">
-<!-- styling of form appearance-->
 <head>
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 
-<title>Instructor TA Login</title>
+<title>Instructor/TA Login</title>
 <!-- Header-->
 <h1 style="font-size:125px;">
 WebWork
 </h1>
 
 <!-- Body-->
-<body>
+<body class="InsTALogin">
+<script src="LoginCheck.js"></script>
+
 
 <div class="lgin">
 
@@ -24,13 +25,13 @@ WebWork<br><br>
 </div>
 
 <div class="lginMain">
-<form action="http://www.bilibili.tv">
+<form name="InsTALoginForm" onsubmit="checkLogin(this);">
 User name:                  	<br>
-<input type="text" name="studentName" placeholder="User name..."><br>
+<input type="text" name="userName" placeholder="User name..." autofocus><br>
 Password:         	    	<br>
 <input type="password" name="password" placeholder="Password..."><br><br>
 <input type="submit" name="submit" value="Log in">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<a href="http://www.bilibili.tv">
+
 <a href="http://www.github.com"><font size="5">Forget your password?</font></a><br>
 </form>
 </div>

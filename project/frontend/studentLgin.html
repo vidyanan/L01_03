@@ -3,7 +3,7 @@
 <!-- styling of form appearance-->
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <title>Student Login</title>
@@ -13,7 +13,9 @@ WebWork
 </h1>
 
 <!-- Body-->
-<body>
+<body class="studentLogin">
+<script src="LoginCheck.js"></script>
+
 
 <div class="lgin">
 
@@ -24,13 +26,13 @@ WebWork<br><br>
 </div>
 
 <div class="lginMain">
-<form action="http://www.bilibili.tv">
+<form name="studentLoginForm" onsubmit="checkLogin(this)">
 Student name:                  	<br>
-<input type="text" name="studentName" placeholder="User name..."><br>
+<input type="text" name="userName" placeholder="User name..." autofocus><br>
 Password:         	    	<br>
 <input type="password" name="password" placeholder="Password..."><br><br>
 <input type="submit" name="submit" value="Log in">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<a href="http://www.bilibili.tv">
+
 <a href="http://www.github.com"><font size="5">Forget your password?</font></a><br>
 </form>
 </div>
