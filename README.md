@@ -10,7 +10,7 @@ In here is the various HTML, images, and other files associated with the HTML pa
 	- Deliverable 2, due Oct 16, (please open main.html and all links will be visible from their)
 - links/userstories.html (userstories, tasks) links/sprintbacklog1.html (tasks, dependencies, activity chart, burndown chart)
 	- Deliverable 3, due Oct 23, (please open main.html and all links will be visible from their)
-- links/userstories.html (userstories, tasks) links/sprintbacklog2.html, links/sprintbacklog2.html (tasks, dependencies, activity chart, burndown chart, taskboards)
+- links/userstories.html (userstories, tasks) links/sprintbacklog2.html, links/sprintbacklog3.html (tasks, dependencies, activity chart, burndown chart, taskboards)
 	- Deliverable 4, due Nov 6, (please open main.html and all links will be visible from their)
 
 ## Project
