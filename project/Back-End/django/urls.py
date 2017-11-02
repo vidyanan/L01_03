@@ -13,6 +13,9 @@ urlpatterns = patterns('',
     url(r'^me/$',						me.me,				name='showMe'),
     url(r'^assignments/get/$',                          assignments.getAssignments,                     name='getAssignments'),
     url(r'^assignments/$',                              assignments.createAssignment,           name='createAssignment'),
+    url(r'^assignments/(.*)/get/$',                     assignments.getQuestions,                       name='getQuestions'),
+    url(r'^assignments/([0-9]*)/$',                     assignments.createQuestion,             name='createQuestion'),
+    url(r'^assignments/([0-9]*)/([0-9]*)/$',            assignments.editQuestion,                       name="editQuestion"),
 
     url(r'^admin/',						include('cgi.admin.urls')),
 )
