@@ -1,0 +1,50 @@
+prefix every /(location)/ with www.yinlinhai.com
+
+NOTE: you'll need to login at www.yinlinhai.com/html/login.htm to setup a session
+
+/assignments/get
+
+    METHOD: GET
+    Returns a list of assignments
+
+
+/assignments/
+
+    METHOD: POST
+    FORMAT:
+        name=name of the assignment
+        start-date=start date of the assignment
+        end-date=end date of the assignment
+    Required: name
+    Creates an assignment
+
+
+/assignments/(assignmentID)/get
+    
+    METHOD: GET
+    Returns the list of questions associated with the assignment given
+    assignmentID
+
+
+/assignments/(assignmentID)/
+
+    METHOD: POST
+    FORMAT:
+        name=name of the question
+        type=type of the question (multiple-choice, short-answer)
+        question=the full question
+        answer=the answer of the question
+    REQUIRED: question, answer, type
+    Creates a question in the assignment given by AssignmentID
+
+
+/assignments/(assignmentID)/(questionID)/
+
+    METHOD: POST
+    FORMAT:
+        name=name of the question
+        type=type of the question (multiple-choice, short-answer)
+        question=the full question
+        answer=the answer of the question
+    REQUIRED: question, answer, type
+    Edits an existing question in the assignment given by AssignmentID, QuestionID
