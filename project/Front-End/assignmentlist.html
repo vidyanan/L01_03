@@ -9,46 +9,56 @@
 		<title>Assignment List</title>
 		<object type="text/html" data="navbar.html"></object>
 		
-		
-		<script type="text/javascript">
-			$.getJSON("http://www.yinlinhai.com/assignments/get/", function(data) {
-				// the data returned is replaced in the variable data
-				// get the drop down menu by id
-				var ul = document.getElementById("ullist");
-				// for each row inside the data
-				$.each(data, function(i, field){
-					// add it as an option for the drop down menu
-					var li = document.createElement("li");
-					// replace the value with the id for that course
-					li.value = data[i].name;				
-					// then replace the actual text for the option
-					// with the coursename, section, and instructor
-					li.text = data[i].name + data[i].start-date + data[i].end-date;
-					// add it as an option
-					ul.add(li);
-				});
-			});
-		</script>
-		
-		
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" 
+				type="text/javascript"></script>
+
 	</head>
 
 	<body>
 		<h1 class='cscc01'>Assignment List</h1>
 
+		<p id="demo"></p>
+
+
+
+
 		<ul id="ullist">
 			<li>Quiz 1: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 2: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 3: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 4: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 5: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 6: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 7: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 8: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
 			
 		</ul>
 		
-		<button type="button">Click Me!</button>
+		<input type="submit" name="submit" class="submit" id="submit" value="Generate List">
+		
+		
+		
+		<script type="text/javascript">
+      	  	document.getElementById("demo").innerHTML = "test";
+			alert("test");
+			$("#submit").click(function(event){
+				
+				
+				$.getJSON("http://www.yinlinhai.com/assignments/get/", function(data) {
+					alert("datagood")
+
+	            });
+				
+				
+	            $.ajax({
+	                    type:'POST',
+	                    url:'http://www.yinlinhai.com/assignments/get/',
+	                    dataType:'JSON',
+	                    data:{
+	                    },
+	                    success:function(data){
+	                            alert("Goood")
+	                    },
+	                    error:function(XMLHttpRequest,textStatus,errorThrown){
+	                        alert("error");
+	                    }
+
+	                });
+			});
+		</script>
 		
 	</body>
 </html>
