@@ -8,11 +8,35 @@
 		<link rel="stylesheet" href="style.css">
 		<title>Assignment List</title>
 		<object type="text/html" data="navbar.html"></object>
+		
+		
+		<script type="text/javascript">
+			$.getJSON("http://www.yinlinhai.com/assignments/get/", function(data) {
+				// the data returned is replaced in the variable data
+				// get the drop down menu by id
+				var ul = document.getElementById("ullist");
+				// for each row inside the data
+				$.each(data, function(i, field){
+					// add it as an option for the drop down menu
+					var li = document.createElement("li");
+					// replace the value with the id for that course
+					li.value = data[i].name;				
+					// then replace the actual text for the option
+					// with the coursename, section, and instructor
+					li.text = data[i].name + data[i].start-date + data[i].end-date;
+					// add it as an option
+					ul.add(li);
+				});
+			});
+		</script>
+		
+		
 	</head>
 
 	<body>
 		<h1 class='cscc01'>Assignment List</h1>
-		<ul>
+
+		<ul id="ullist">
 			<li>Quiz 1: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
 			<li>Quiz 2: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
 			<li>Quiz 3: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
@@ -23,5 +47,8 @@
 			<li>Quiz 8: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
 			
 		</ul>
+		
+		<button type="button">Click Me!</button>
+		
 	</body>
 </html>
