@@ -36,12 +36,7 @@
 			alert("test");
 			$("#submit").click(function(event){
 				
-				
-				$.getJSON("http://www.yinlinhai.com/assignments/get/", function(data) {
-					alert("datagood")
 
-	            });
-				
 				
 	            $.ajax({
 	                    type:'POST',
@@ -50,11 +45,11 @@
 	                    data:{
 	                    },
 	                    success:function(data){
-	                            alert("Goood")
+							alert("Goood");
 	                    },
-	                    error:function(XMLHttpRequest,textStatus,errorThrown){
-	                        alert("error");
-	                    }
+						
+						alert("helloworld");
+
 
 	                });
 			});
