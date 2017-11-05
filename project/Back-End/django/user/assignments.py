@@ -171,24 +171,25 @@ def createQuestion(request, assignment):
 
 def editQuestion(request, assignment, question):
 
-    if(request.session["user"]):
+    try:
+        if(request.session["user"]):
             inputs = {"assignment":assignment, "errors":""}
 
             try:
                 inputs["name"] = request.POST["name"]
             except Exception as e:
                 inputs["name"] = ""
-
+  
             try:
                 inputs["type"] = request.POST["type"]
             except Exception as e:
                 inputs["type"] = ""
-
+  
             try:
                 inputs["question"] = request.POST["question"]
             except Exception as e:
                 inputs["question"] = ""
-
+  
             try:
                 inputs["answer"] = request.POST["answer"]
             except Exception as e:
@@ -196,9 +197,7 @@ def editQuestion(request, assignment, question):
 
             try:
                 if(len(inputs["question"]) != 0 and len(inputs["answer"]) != 0 and len(inputs["type"]) != 0):
-			"UPDATE assignments SET `name`=%s, `start-date`=%s, `end-date`=%s WHERE id=%s", (inputs["name"], inputs["start-date"], inputs["end-date"], inputs["assignment"])
-                    db.Query(
-                    """     UPDATE questions SET `name`=%s, `type`=%s, `question`=%s, `answer`=%s WHERE id=%s AND `assignment`=%s""", (inputs["name"], inputs["type"], inputs["question"], inputs["answer"], question, assignment))
+                    db.Query("""UPDATE questions SET `name`=%s, `type`=%s, `question`=%s, `answer`=%s WHERE id=%s AND `assignment`=%s""", (inputs["name"], inputs["type"], inputs["question"], inputs["answer"], question, assignment))
             except Exception as e:
                 inputs["errors"] = e
 
@@ -206,4 +205,4 @@ def editQuestion(request, assignment, question):
 
     except Exception as e:
 
-        return HttpResponse(e)
+        return HttpResponse("not loogged in")
