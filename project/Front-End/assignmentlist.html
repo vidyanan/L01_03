@@ -17,11 +17,18 @@
 	<body>
 		<h1 class='cscc01'>Assignment List</h1>
 
-		<p id="demo"></p>
-
 		<div id="div1">
-		<p id="p1">This is a paragraph.</p>
-		<p id="p2">ID      NAME       Start-Date        End-Date</p>
+			<table id="atable" width="auto">
+			  <tr>
+			    <th><b>Name<b></th>
+			    <th><b>Start Date<b></th> 
+			    <th><b>End Date<b></th>
+			  </tr>
+			</table>
+			
+			<table id="dataTable" style="width:100%">
+
+			</table>
 		</div>
 
 
@@ -29,48 +36,34 @@
 		
 		
 		
-		<input type="submit" name="submit" class="submit" id="submit" value="Generate List">
+		<input type="submit" name="submit" class="submit" id="submit" value="Create Questions">
 		
 		<script type="text/javascript">
-		  	document.getElementById("demo").innerHTML = "test";
+		  	//document.getElementById("demo").innerHTML = "test";
 			
-			
+		//console.log("hello");	
 				
 			$.getJSON("http://www.yinlinhai.com/assignments/get/", function(data) {
 				
 				//var ul = document.createElement('ul');
-				
-				$.each(data, function(i, field){
-					var para = document.createElement("p");
-					var node = document.createTextNode(data[i].name);
+				//console.log("hello");	
+				console.log(data);
+				var assignments = data["assignments"];
+				var table = document.getElementById("atable");
+				for(var i=0;i<assignments.length;i++){
+					//var tr = document.createElement("table");
+				    
+				    var row = table.insertRow(-1);
+				    var cell1 = row.insertCell(0);
+				    var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+				    cell1.innerHTML = data["assignments"][i]["name"];
+				    cell2.innerHTML = data["assignments"][i]["start-date"];
+					cell3.innerHTML = data["assignments"][i]["end-date"];
 					
-					para.appendChild(node);
-					var element = document.getElementById("div1");
-					element.appendChild(para);
-					// add it as an option for the drop down menu
-					//var li = document.createElement("li");
-					/// replace the value with the id for that course
-					//li.value = "test";
-					//data[i].name;				
-					// then replace the actual text for the option
-					// with the coursename, section, and instructor
-					//li.text = 
-					//data[i].name + " " + data[i].start-data + " " + data[i].end-date;
-					// add it as an option
-					//ul.appendChild(li);
-				});
-						
-						
-						
-
-					
-					
-				
-			
+				}
 			});
 
-
-			
 		</script>
 		
 	</body>
