@@ -16,8 +16,10 @@ from library import tools
 def getAssignments(request):
     try:
         if(request.session["user"]):
-            # return template based on user
-            result = {"errors":""}
+            #return template based on user
+            #result = {"errors":""}
+            result = dict()
+            arrayToAdd = []
             assignments = db.Query(
                 """     SELECT *
                         FROM `assignments`
@@ -26,11 +28,12 @@ def getAssignments(request):
 
             for assignment in assignments:
                 temp = dict()
+                temp["id"] = assignment["id"]
                 temp["name"] = assignment["name"]
                 temp["start-date"] = assignment["start-date"]
                 temp["end-date"] = assignment["end-date"]
-                result[assignment["id"]] = temp
-
+                arrayToAdd.append(temp)
+            result["assignments"] = arrayToAdd
             return HttpResponse(json.dumps(result), content_type="application/json")
 
     except Exception as e:
@@ -108,6 +111,7 @@ def getQuestions(request, assignment):
     try:
         if(request.session["user"]):
             result = {"errors":""}
+            arrayToAdd = []
             questions=db.Query(
                 """    SELECT *
                        FROM `questions`
@@ -115,11 +119,14 @@ def getQuestions(request, assignment):
 
             for question in questions:
                 temp = dict()
+                temp["id"] = question["id"]
                 temp["name"] = question["name"]
                 temp["type"] = question["type"]
                 temp["question"] = question["question"]
                 temp["answer"] = question["answer"]
-                result[question["id"]] = temp
+                arrayToAdd.append(temp)
+
+            result["questions"] = arrayToAdd
 
             return HttpResponse(json.dumps(result), content_type="application/json")
 

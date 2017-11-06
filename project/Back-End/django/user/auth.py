@@ -13,7 +13,7 @@ from library import tools
 def login(request):
 	try:
 		if(checkOperator(request)):
-			return HttpResponse('Login success')
+			return HttpResponse('<html lang="en"><head><meta http-equiv="refresh" content="0; url=/html/welcomeTA.html"/></head><body>Login success</body></html>')
 		else:
 			time.sleep(2)
 			return HttpResponse('Invalid user or password')
