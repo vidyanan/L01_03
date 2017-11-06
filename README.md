@@ -16,6 +16,19 @@ In here is the various HTML, images, and other files associated with the HTML pa
 ## Project
 In here is the actual code for the project.
 
+-Open project/mainproject.html, which will direct you to login 
+-click instructor (username: ta password: ta) or student (username: student password:student)
+-from here you can check out some pages like the student account creation, creating an assignment and creating questions
 
-## Meetings.txt
-This file is used to keep track of meetings that have occured
+-the creating assignment pages our second user story which has been released has to be run the following way
+	-http://www.yinlinhai.com/html/login.htm
+	-username: test password: test
+
+-after login please go to following page (you can create an assignment from here)
+	-http://www.yinlinhai.com/html/assignmentcreation.html
+
+-and the following page will give you a list of all created assignments
+	-http://www.yinlinhai.com/html/assignmentlist.html
+
+All pages will be run directly from the server still working on updating everything to run with one website link. 
+The creation of questions under each assignment is in progress.
