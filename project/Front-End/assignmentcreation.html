@@ -7,22 +7,24 @@
 		<!-- webpage header -->
 		<link rel="stylesheet" href="style.css">
 		<title>Assignment Creation</title>
-		<object type="text/html" data="navbar.html"></object>
+		<object type="text/html" data="navbarTA.html" width="100%" height="50"></object>	
 	</head>
 
 	<body>
 		
 		<h1 class='cscc01'>Create Assignment</h1>
-		<form id="quiz">
-		  Quiz Name:<br>
-		  <input type="text" name="quizname"><br>
-		  Quiz Start Date<br>
-		  <input type="text" name="quizstartdate"><br>
-		  Quiz End Date<br>
-		  <input type="text" name="quizenddate"><br>
+		
+		<form target="_blank" id="quiz" action="http://www.yinlinhai.com/assignments/" method="post">
+			  Quiz Name: (format: string)<br>
+			  <input type="text" name=name><br>
+			  Quiz Start Date: (format: numbers: YYYY-DD-MM HH:MM:SS)<br>
+			  <input type="text" name=start-date><br>
+			  Quiz End Date: (format: numbers: YYYY-DD-MM HH:MM:SS)<br>
+			  <input type="text" name=end-date><br>
+			  <input onclick="window.location.href = 'https://google.com';" type="submit" value="Submit request" />
 		</form>
 			
-		<button onClick="location.href='assignmentlist.html'" type="button">Create Assignment</button>
+
 		
 		
 	</body>
