@@ -7,21 +7,64 @@
 		<!-- webpage header -->
 		<link rel="stylesheet" href="style.css">
 		<title>Assignment List</title>
-		<object type="text/html" data="navbar.html"></object>
+		<object type="text/html" data="navbarTA.html" width="100%" height="50"></object>
+		
+		
+        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
 	</head>
 
 	<body>
 		<h1 class='cscc01'>Assignment List</h1>
-		<ul>
-			<li>Quiz 1: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 2: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 3: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 4: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 5: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 6: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 7: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
-			<li>Quiz 8: <button type="button">Create Questions</button> <br> Start Date: Nov 1 <br> End Date: Nov 5</li>
+
+		<div id="div1">
+			<table id="atable" width="auto">
+			  <tr>
+			    <th><b>Name<b></th>
+			    <th><b>Start Date<b></th> 
+			    <th><b>End Date<b></th>
+			  </tr>
+			</table>
 			
-		</ul>
+			<table id="dataTable" style="width:100%">
+
+			</table>
+		</div>
+
+
+		
+		
+		
+		
+		<input type="submit" name="submit" class="submit" id="submit" value="Create Questions">
+		
+		<script type="text/javascript">
+		  	//document.getElementById("demo").innerHTML = "test";
+			
+		//console.log("hello");	
+				
+			$.getJSON("http://www.yinlinhai.com/assignments/get/", function(data) {
+				
+				//var ul = document.createElement('ul');
+				//console.log("hello");	
+				console.log(data);
+				var assignments = data["assignments"];
+				var table = document.getElementById("atable");
+				for(var i=0;i<assignments.length;i++){
+					//var tr = document.createElement("table");
+				    
+				    var row = table.insertRow(-1);
+				    var cell1 = row.insertCell(0);
+				    var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+				    cell1.innerHTML = data["assignments"][i]["name"];
+				    cell2.innerHTML = data["assignments"][i]["start-date"];
+					cell3.innerHTML = data["assignments"][i]["end-date"];
+					
+				}
+			});
+
+		</script>
+		
 	</body>
 </html>
