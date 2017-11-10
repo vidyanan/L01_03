@@ -71,8 +71,8 @@ def createAssignment(request):
 <head>
 <meta http-equiv="refresh" content="0; url=/html/assignmentlist.html"/>
 </head>
-<body>%s</body>
-</html>""", (json.dumps(inputs)))
+<body>{}</body>
+</html>""".format(json.dumps(inputs)))
 
     except Exception as e:
         
@@ -106,7 +106,12 @@ def editAssignments(request, assignment):
             except Exception as e:
                 inputs["errors"] = e
 
-            return HttpResponse(json.dumps(inputs), content_type="application/json")
+            return  HttpResponse("""<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url=/html/assignmentlist.html"/>
+</head>
+<body>{}</body>
+</html>""".format(json.dumps(inputs)))
 
     except Exception as e:
 
