@@ -48,3 +48,24 @@ NOTE: you'll need to login at www.yinlinhai.com/html/login.htm to setup a sessio
         answer=the answer of the question
     REQUIRED: question, answer, type
     Edits an existing question in the assignment given by AssignmentID, QuestionID
+
+/account/student/
+
+    METHOD: POST
+    FORMAT:
+        name = name of the student
+        email = email of the student
+        password = student's password (secure I know)
+    REQUIRED: email, password
+    Creates a student account
+
+/account/ta/
+
+    METHOD: POST
+    FORMAT:
+        name = name of the ta
+        email = email of the ta
+        password = student's password (secure I know)
+    REQUIRED: email, password
+    Creates a ta account
+

@@ -67,7 +67,12 @@ def createAssignment(request):
             except Exception as e:
                 inputs["errors"] = e
 
-            return HttpResponse(json.dumps(inputs), content_type="application/json")
+            return HttpResponse("""<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url=/html/assignmentlist.html"/>
+</head>
+<body>%s</body>
+</html>""", (json.dumps(inputs)))
 
     except Exception as e:
         
