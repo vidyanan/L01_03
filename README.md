@@ -19,7 +19,7 @@ In here is the various HTML, images, and other files associated with the HTML pa
 In here is the actual code for the project.
 
 Open the following link;
-http://www.yinlinhai.com/html/lgin.htm
+http://www.yinlinhai.com/html/lgin.html
 click instructor
 then login username: test password: test
 
