@@ -13,9 +13,14 @@ from library import tools
 
 #==============================================================================
 
+CREATE_ROLES = ["ta", "admin"]
+EDIT_ROLES = ["admin", "ta"]
+GET_ROLES = ["admin", "ta", "student"]
+
+
 def getAssignments(request):
     try:
-        if(request.session["user"]):
+        if(request.session["user"]["role"] in GET_ROLES):
             #return template based on user
             #result = {"errors":""}
             result = dict()
@@ -41,7 +46,7 @@ def getAssignments(request):
 
 def createAssignment(request):
     try:
-        if(request.session["user"]):
+        if(request.session["user"]["role"] in CREATE_ROLES):
             # create assignment if user has permissions
             inputs = {"errors":"", "raw":request.POST}
             reqInputs = False
@@ -80,7 +85,7 @@ def createAssignment(request):
 
 def editAssignments(request, assignment):
     try:
-        if(request.session["user"]):
+        if(request.session["user"]["role"] in EDIT_ROLES):
             # edit an assignment if user has permissions
             inputs = {"errors":"", "raw":request.POST, "assignment":assignment}
             reqInputs = False
@@ -117,28 +122,38 @@ def editAssignments(request, assignment):
 
         return HttpResponse(e)
 
+def taGetQuestions(request, assignment):
+    result = {"errors":""}
+    arrayToAdd = []
+    questions=db.Query(
+        """    SELECT *
+               FROM `questions`
+               WHERE `assignment`=%s""", (assignment))
+
+    for question in questions:
+        temp = dict()
+        temp["id"] = question["id"]
+        temp["name"] = question["name"]
+        temp["type"] = question["type"]
+        temp["question"] = question["question"]
+        temp["answer"] = question["answer"]
+        arrayToAdd.append(temp)
+
+    result["questions"] = arrayToAdd
+
+    return HttpResponse(json.dumps(result), content_type="application/json")
+
+def studentGetQuestions(request, assignment):
+    return HttpResponse("NOT IMPLEMENTED YET")
+
 def getQuestions(request, assignment):
     try:
-        if(request.session["user"]):
-            result = {"errors":""}
-            arrayToAdd = []
-            questions=db.Query(
-                """    SELECT *
-                       FROM `questions`
-                       WHERE `assignment`=%s""", (assignment))
+        if(request.session["user"]["role"] in GET_ROLES):
 
-            for question in questions:
-                temp = dict()
-                temp["id"] = question["id"]
-                temp["name"] = question["name"]
-                temp["type"] = question["type"]
-                temp["question"] = question["question"]
-                temp["answer"] = question["answer"]
-                arrayToAdd.append(temp)
-
-            result["questions"] = arrayToAdd
-
-            return HttpResponse(json.dumps(result), content_type="application/json")
+            if(request.session["user"]["role"] in EDIT_ROLES or request.session["user"]["role"] in CREATE_ROLES):
+                return taGetQuestions(request, assignment)
+            else:
+                return studentGetQuestions(request, assignment)
 
     except Exception as e:
 
@@ -148,7 +163,7 @@ def getQuestions(request, assignment):
 def createQuestion(request, assignment):
     try:
 
-        if(request.session["user"]):
+        if(request.session["user"]["role"] in CREATE_ROLES):
             inputs = {"assignment":assignment, "errors":""}
 
             try:
@@ -189,7 +204,7 @@ def createQuestion(request, assignment):
 def editQuestion(request, assignment, question):
 
     try:
-        if(request.session["user"]):
+        if(request.session["user"]["role"] in EDIT_ROLES):
             inputs = {"assignment":assignment, "errors":""}
 
             try:
