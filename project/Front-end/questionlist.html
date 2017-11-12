@@ -23,7 +23,7 @@
 			</main>
 		</div>
 
-		<input type="button" onclick="location.href='http://www.yinlinhai.com/html/CALVIN2.html';" value="Create Questions" />
+		<input type="button" onclick="location.href='http://www.yinlinhai.com/html/questioncreation.html';" value="Create Questions" />
 
 		
 		<script type="text/javascript">
@@ -44,7 +44,7 @@
 				
 				var assignments = data["questions"];
 				for(var i=0;i<assignments.length;i++){
-					var button1 = `<input type="button" onclick="location.href='http://www.yinlinhai.com/html/CALVIN3.html';" value="Edit" />`
+					var button1 = `<input type="button" onclick="location.href='http://www.yinlinhai.com/html/questionedit.html';" value="Edit" />`
 					var text = '<div class="container-text"><h1>' + data["questions"][i]["name"] + "</h1><p>" + data["questions"][i]["type"] + '</p><p>' + data["questions"][i]["question"] + '</p><p>' + data["questions"][i]["answer"] + '</p>' + button1 + '</div>';
 					console.log(text);
 					document.getElementById("question").innerHTML += text;
