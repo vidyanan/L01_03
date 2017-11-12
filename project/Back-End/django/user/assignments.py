@@ -165,12 +165,12 @@ def studentGetQuestions(request, assignment):
            buf = ""
 
            for multipleChoice in multipleChoicePart:
-               buf = buf + '<input type="radio">{}<br>'.format(multipleChoice)
+               buf = buf + '<input type="radio" name="{}:{}">{}<br>'.format(question["id"], multipleChoice, multipleChoice)
 
-           arrayToAdd.append(mc.format(questionParse[0], buf))
+           arrayToAdd.append(mc.format(question["id"], questionParse[0], buf))
 
         elif(question["type"] == "short-answer"):
-           arrayToAdd.append(sa.format(question["question"]))
+           arrayToAdd.append(sa.format(question["id"], question["question"], question["id"]))
         else:
            arrayToAdd.append("error") 
 
@@ -186,7 +186,7 @@ def studentGetQuestions(request, assignment):
 
     # return html
 
-    return HttpResponse(finHtml.format(assignment["name"], buf))
+    return HttpResponse(finHtml.format(assignment["name"], assignment["id"], buf))
 
 def getQuestions(request, assignment):
     try:
@@ -280,3 +280,37 @@ def editQuestion(request, assignment, question):
     except Exception as e:
 
         return HttpResponse("not loogged in")
+
+def submitQuestion(request, assignment):
+    try:
+        if(request.session["user"]):
+            result = []
+            # get keys
+            for key in request.POST.keys():
+                # if it's a multiple choice question
+                if(request.POST[key] == "on"):
+
+                    #split question and answer
+                    answer = key.split(":")
+                    db.Query(
+                        """INSERT INTO answers 
+                           (user, assignment, question, answer) 
+                           VALUES (%s, %s, %s, %s)""", 
+                           (request.session["user"]["ID"], assignment, answer[0], answer[1]))
+
+                # If it's a short answer
+                else:
+                    db.Query(
+                        """INSERT INTO answers
+                           (user, assignment, question, answer)
+                           VALUES (%s, %s, %s, %s)""",
+                           (request.session["user"]["ID"], assignment, key, request.POST[key]))
+                
+            return HttpResponse("""<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url=/html/assignmentlist.html"/>
+</head>
+<body>{}</body>
+</html>""")
+    except Exception as e:
+        return HttpResponse(json.dumps(e), content_type="application/json")
