@@ -16,7 +16,7 @@ from library import tools
 CREATE_ROLES = ["ta", "admin"]
 EDIT_ROLES = ["admin", "ta"]
 GET_ROLES = ["admin", "ta", "student"]
-
+ROOT_HTML = "/home/nginx/www/html/"
 
 def getAssignments(request):
     try:
@@ -144,7 +144,49 @@ def taGetQuestions(request, assignment):
     return HttpResponse(json.dumps(result), content_type="application/json")
 
 def studentGetQuestions(request, assignment):
-    return HttpResponse("NOT IMPLEMENTED YET")
+
+    # get a set of questions
+    arrayToAdd = []
+    questions = db.Query(
+    """    SELECT *
+           FROM `questions`
+           WHERE `assignment`=%s""", (assignment))
+
+    # fill in questions into multiple divs
+    mc = open(ROOT_HTML + "multipleChoiceTemplate.html", 'r').read()
+    sa = open(ROOT_HTML + "shortAnswerTemplate.html", 'r').read()
+
+    for question in questions:
+        if(question["type"] == "multiple-choice"):
+           # parse answer by splitting strings ';' for end of question ':' for multiple choice
+           questionParse = question["question"].split(";")
+           multipleChoicePart = questionParse[1].split(":")
+
+           buf = ""
+
+           for multipleChoice in multipleChoicePart:
+               buf = buf + '<input type="radio">{}<br>'.format(multipleChoice)
+
+           arrayToAdd.append(mc.format(questionParse[0], buf))
+
+        elif(question["type"] == "short-answer"):
+           arrayToAdd.append(sa.format(question["question"]))
+        else:
+           arrayToAdd.append("error") 
+
+    # put these questions in html
+    buf = ""
+    for question in arrayToAdd:
+        buf = buf + question + '\n'
+
+    finHtml = open(ROOT_HTML + "questionpage.html", 'r').read()
+
+    # pull assignment information
+    assignment = db.Query("SELECT * FROM `assignments` WHERE `id`=%s""", (str(assignment))).fetch()
+
+    # return html
+
+    return HttpResponse(finHtml.format(assignment["name"], buf))
 
 def getQuestions(request, assignment):
     try:
