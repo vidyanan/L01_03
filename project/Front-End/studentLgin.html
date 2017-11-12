@@ -1,54 +1,28 @@
  <!DOCTYPE html>
 <html lang = "en">
 <!-- styling of form appearance-->
-
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-
+<head><link rel="stylesheet" type="text/css" href="style.css"></head>
 <title>Student Login</title>
-<!-- Header-->
-<h1 style="font-size:125px;">
-WebWork
-</h1>
-
 <!-- Body-->
-<body class="studentLogin">
-<script src="LoginCheck.js"></script>
-
-<div class="lgin">
-
-
-
-<div class="lginHeader">
-WebWork<br><br>
+<body class="studentLogin"><script src="LoginCheck.js"></script>
+<!-- Title section of login page -->
+<div class="WebWorkTitle">
+		WebWork<br>
 </div>
-
-<div class="lginMain">
-<form name="studentLoginForm" action="http://www.yinlinhai.com/login/" method="post">
-Student name:                  	<br>
-<input type="text" id="emai" name="email" placeholder="User name..." autofocus><br>
-Password:         	    	<br>
-<input type="password" name="password" placeholder="Password..."><br><br>
-<input type="submit" name="submit" value="Log in">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
-<a href="./studentLgin.html"><font size="5">Forget your password?</font></a><br>
-</form>
+<!-- Log in frame of login page-->
+<div class="loginFrame">
+	<div class="loginFrame_Header">
+		WebWork</div>
+	<form class = "loginFrame_Form" action="http://www.yinlinhai.com/login/" method="post">
+			Student name:<br>
+			<input type="text" id="emai" name="email" placeholder="User name..." autofocus><br>
+			Password:<br>
+			<input type="password" name="password" placeholder="Password..."><br><br>
+		<input type="submit" name="submit" value="Log in"></form>
+	<div class="loginFrame_Footer">
+  	<a href="./studentLgin.html">Forget your password?</a><br>
+		<a href="./studentLgin.html">Learn more about WebWork</a></div>
 </div>
-
-<div class="lginFooter">
-<br>
-<a href="./studentLgin.html">Learn more about WebWork</a>
-<br>
-</div>
-
-
-
-
-</div>
-
-
-
 
 </body>
 </html> 
