@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import patterns, include, url
-from user import auth, me, userAccounts
+from user import auth, me, userAccounts, redirect
 from user import assignments
 from index import index
 
@@ -17,8 +17,12 @@ urlpatterns = patterns('',
     url(r'^assignments/([0-9]*)/get/$',                 assignments.getQuestions,               name='getQuestions'),
     url(r'^assignments/([0-9]*)/$',                     assignments.createQuestion,                     name='createQuestion'),
     url(r'^assignments/([0-9]*)/([0-9]*)/$',            assignments.editQuestion,               name="editQuestion"),
-    url(r'^account/student/$',                           	userAccounts.createStudent,		name='createStudents'),
-    url(r'^account/ta/$',					userAccounts.createTA,		name='createTA'),
+    url(r'^assignments/([0-9]*)/submit/$',		assignments.submitQuestion,			name='submitQuestion'),
+    url(r'^account/student/$',                           	userAccounts.createStudent,	name='createStudents'),
+    url(r'^account/ta/$',					userAccounts.createTA,			name='createTA'),
+    url(r'^([0-9]*)/questionlist.html$',          	redirect.getSingleAssignment,           name='getSingleAssignment'),
+    url(r'^([0-9]*)/([0-9]*)/questionedit.html$',	redirect.editQuestionPage,			name='getEditQuestionPage'),
+    url(r'^([0-9]*)/questioncreation.html$',		redirect.createQuestionPage,		name='getCreateQuestionsPage'),
 
     url(r'^admin/',						include('cgi.admin.urls')),
 )

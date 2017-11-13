@@ -10,10 +10,19 @@ from library import database as db
 from library import tools
 
 #==================================================================================================
+
+TA_ROLES = ["ta", "admin"]
+STUDENT_ROLES = ["student"]
+
 def login(request):
 	try:
 		if(checkOperator(request)):
-			return HttpResponse('<html lang="en"><head><meta http-equiv="refresh" content="0; url=/html/welcomeTA.html"/></head><body>Login success</body></html>')
+			if(request.session["user"]["role"] in TA_ROLES):
+					return HttpResponse('<html lang="en"><head><meta http-equiv="refresh" content="0; url=/html/welcomeTA.html"/></head><body>Login success</body></html>')
+			elif(request.session["user"]["role"] in STUDENT_ROLES):
+					return HttpResponse('<html lang="en"><head><meta http-equiv="refresh" content="0; url=/html/welcome.html"/></head><body>Login success</body></html>')
+			else:
+				return HttpResponse("Failed to login system, %s" % ex)
 		else:
 			time.sleep(2)
 			return HttpResponse('Invalid user or password')
