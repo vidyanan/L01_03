@@ -1,0 +1,31 @@
+<!-- CSCC01 - L01_03 Project-->
+
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="utf-8" />
+                <!-- webpage header -->
+                <link rel="stylesheet" href="/html/style.css">
+                <title>Question Edit</title>
+                <object type="text/html" data="/html/navbarTA.html" width="100%" height="50"></object>
+        </head>
+
+        <body>
+
+                <h1 class='cscc01'>Edit Question</h1>
+
+                <form target="_blank" id="question" action="http://www.yinlinhai.com/assignments/{0}/{1}/" method="post">
+                          Question Name: (format: string)<br>
+                          <input type="text" name=name><br>
+                          Question Type:<br>
+                          <input type="radio" name="type" value="multiple-choice"> Multiple Choice<br>
+                          <input type="radio" name="type" value="short-answer"> Short Answer<br>
+                          Question<br>
+                          <input type="text" name=question><br>
+                          Answer<br>
+                          <input type="text" name=answer><br>
+                          <input type="submit" value="Submit Request" />
+                </form>
+        </body>
+</html>
+
