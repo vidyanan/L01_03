@@ -123,12 +123,10 @@ def editAssignments(request, assignment):
         return HttpResponse(e)
 
 def taGetQuestions(request, assignment):
-    result = {"errors":""}
+    result = {"errors":"", "assignment":assignment}
     arrayToAdd = []
-    questions=db.Query(
-        """    SELECT *
-               FROM `questions`
-               WHERE `assignment`=%s""", (assignment))
+    fix = str(assignment)
+    questions=db.Query("SELECT * FROM `questions` WHERE `assignment`=" + assignment, ())
 
     for question in questions:
         temp = dict()
@@ -147,6 +145,14 @@ def studentGetQuestions(request, assignment):
 
     # get a set of questions
     arrayToAdd = []
+
+    # Delete any old answers
+
+    db.Query(
+    """    DELETE FROM `answers`
+           WHERE `assignment`=%s
+           AND `user`=%s""", (assignment, request.session["user"]["ID"]))
+
     questions = db.Query(
     """    SELECT *
            FROM `questions`
@@ -167,10 +173,10 @@ def studentGetQuestions(request, assignment):
            for multipleChoice in multipleChoicePart:
                buf = buf + '<input type="radio" name="{}:{}">{}<br>'.format(question["id"], multipleChoice, multipleChoice)
 
-           arrayToAdd.append(mc.format(question["id"], questionParse[0], buf))
+           arrayToAdd.append(mc.format(questionParse[0], buf))
 
         elif(question["type"] == "short-answer"):
-           arrayToAdd.append(sa.format(question["id"], question["question"], question["id"]))
+           arrayToAdd.append(sa.format(question["question"], question["id"]))
         else:
            arrayToAdd.append("error") 
 
@@ -214,7 +220,7 @@ def createQuestion(request, assignment):
                 inputs["name"] = ""
 
             try:
-                inputs["type"] = request.POST["type"] 
+                inputs["type"] = request.POST["type"]
             except Exception as e:
                 inputs["type"] = ""
 
@@ -231,23 +237,28 @@ def createQuestion(request, assignment):
             try:
                 if(len(inputs["question"]) != 0 and len(inputs["answer"]) != 0 and len(inputs["type"]) != 0):
                     db.Query(
-                    """     INSERT INTO `questions` (`name`, `type`, `questions`, `answer`, `assignment`)
-                            VALUES (%s, %s, %s, %s)""", (inputs["name"], inputs["type"], inputs["question"], inputs["answer"], assignment))
+                    """     INSERT INTO `questions` (`name`, `type`, `question`, `answer`, `assignment`)
+                            VALUES (%s, %s, %s, %s, %s)""", (inputs["name"], inputs["type"], inputs["question"], inputs["answer"], assignment))
             except Exception as e:
                 inputs["errors"] = e
 
-            return HttpResponse(json.dumps(inputs), content_type="application/json")
+            return HttpResponse("""<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url=/{}/questionlist.html"/>
+</head>
+<body>{}</body>
+</html>""".format(assignment, json.dumps(inputs)))
 
     except Exception as e:
 
-        return HttpResponse("Not logged in")
+        return HttpResponse(e)
 
 
 def editQuestion(request, assignment, question):
 
     try:
         if(request.session["user"]["role"] in EDIT_ROLES):
-            inputs = {"assignment":assignment, "errors":""}
+            inputs = {"assignment":assignment, "errors":"", "raw":request.POST}
 
             try:
                 inputs["name"] = request.POST["name"]
@@ -258,7 +269,8 @@ def editQuestion(request, assignment, question):
                 inputs["type"] = request.POST["type"]
             except Exception as e:
                 inputs["type"] = ""
-  
+ 
+ 
             try:
                 inputs["question"] = request.POST["question"]
             except Exception as e:
@@ -275,7 +287,12 @@ def editQuestion(request, assignment, question):
             except Exception as e:
                 inputs["errors"] = e
 
-            return HttpResponse(json.dumps(inputs), content_type="application/json")
+            return HttpResponse("""<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url=/{}/questionlist.html"/>
+</head>
+<body>{}</body>
+</html>""".format(assignment, json.dumps(inputs)))
 
     except Exception as e:
 

@@ -20,7 +20,9 @@ urlpatterns = patterns('',
     url(r'^assignments/([0-9]*)/submit/$',		assignments.submitQuestion,			name='submitQuestion'),
     url(r'^account/student/$',                           	userAccounts.createStudent,	name='createStudents'),
     url(r'^account/ta/$',					userAccounts.createTA,			name='createTA'),
-    url(r'^html/toBEFILLED.html$',                      redirect.getSingleAssignment,           name='getSingleAssignment'),
+    url(r'^([0-9]*)/questionlist.html$',          	redirect.getSingleAssignment,           name='getSingleAssignment'),
+    url(r'^([0-9]*)/([0-9]*)/questionedit.html$',	redirect.editQuestionPage,			name='getEditQuestionPage'),
+    url(r'^([0-9]*)/questioncreation.html$',		redirect.createQuestionPage,		name='getCreateQuestionsPage'),
 
     url(r'^admin/',						include('cgi.admin.urls')),
 )

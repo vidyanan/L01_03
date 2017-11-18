@@ -13,13 +13,28 @@ from library import tools
 
 #==============================================================================
 
-ROOT = "/home/nginx/www/html"
+ROOT = "/home/nginx/www/html/"
 
 def getSingleAssignment(request, assignment):
     try:
         if(request.session["user"]):
-            f = open(ROOT + "", 'w')
+            f = open(ROOT + "questionlist.html", 'r')
             return HttpResponse(f.read().format(assignment))
     except Exception as e:
         return HttpResponse(e) 
+def createQuestionPage(request, assignment):
+    try:
+        if(request.session["user"]):
+            f = open(ROOT + "questioncreation.html", 'r')
+            return HttpResponse(f.read().format(assignment))
+    except Exception as e:
+        return HttpResponse(e)
+
+def editQuestionPage(request, assignment, questions):
+    try:
+        if(request.session["user"]):
+            f = open(ROOT + "questionedit.html", 'r')
+            return HttpResponse(f.read().format(assignment, questions))
+    except Exception as e:
+        return HttpResponse(e)
 
