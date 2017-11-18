@@ -12,13 +12,11 @@
     background-size: cover;
 }
 .studentLogin{
-    background-color: rgb(94, 154, 167);
+    background-color: white;
 
 }
 .InsTALogin{
-    background-image: url("./Assets/InsTABackground.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: white;
 }
 
 /* ---------TA/Instructor button----- */
