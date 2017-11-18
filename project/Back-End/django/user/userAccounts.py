@@ -69,9 +69,9 @@ def createAccount(request, role):
 
     return HttpResponse("""<html lang="en">
 <head>
-<meta http-equiv="refresh" content="0; url=/html/Student%20Account%20Creation.html"/>
+<meta http-equiv="refresh" content="0; url=/html/{}%20Account%20Creation.html"/>
 </head>
 <body>{}</body>
-</html>""".format(json.dumps(inputs)))
+</html>""".format(role, json.dumps(inputs)))
 
 
