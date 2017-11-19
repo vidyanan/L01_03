@@ -20,19 +20,20 @@ In here is the actual code for the project.
 
 Open the following link;
 http://www.yinlinhai.com/html/lgin.html
-click instructor
-then login username: test password: test
-click student
-then login username: student password: student
 
-after login please go to following page (you can create an assignment from here)
-http://www.yinlinhai.com/html/assignmentcreation.html
+click instructor then login username: test password: test
+- click on accounts, to create student accounts
+- click on assignments, to view all assignments
+- you will then see a list of all created assignemnts, you can click on any assignemnt thats created to edit the questions
+- you can create a new assignemnt, with the button at the button, which will then ask you to add as many questions as you would like for it
+- you can also see the class average on the assignmentlist page
 
-and the following page will give you a list of all created assignments
-http://www.yinlinhai.com/html/assignmentlist.html
 
-All pages will be run directly from the server still working on updating everything to run with one website link. 
-The creation of questions under each assignment is in progress.
+click student then login username: student password: student
+- click on assignments to view all available assignemnts
+- you can then click on any assignemnt and answer all of the questions
+- your grade on the individual assignemnt will show when you click submit
+
 
 ## Testing
 In here is the all the test cases.
