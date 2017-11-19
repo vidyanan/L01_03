@@ -145,6 +145,14 @@ def studentGetQuestions(request, assignment):
 
     # get a set of questions
     arrayToAdd = []
+
+    # Delete any old answers
+
+    db.Query(
+    """    DELETE FROM `answers`
+           WHERE `assignment`=%s
+           AND `user`=%s""", (assignment, request.session["user"]["ID"]))
+
     questions = db.Query(
     """    SELECT *
            FROM `questions`
