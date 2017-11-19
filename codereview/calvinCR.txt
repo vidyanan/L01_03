@@ -1,0 +1,25 @@
+Code Review (Jinming, Shoaib)
+
+InsTaLgin
+useless link at bottom of login
+readable may need some spacing
+follows original design
+Well commented
+
+studentLgin
+useless link at bottom of login
+readable may need some spacing
+follows original design
+Well commented
+
+Student Account Creation
+fixed name of file
+excel file not implemented
+easily readable
+follows original design
+
+TA Account Creation
+fixed name of file
+excel file not implemented
+easily readable
+follows original design
