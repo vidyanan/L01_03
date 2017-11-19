@@ -2,6 +2,7 @@
 
 import time
 import json
+import random
 
 from django.http import QueryDict
 from django.http import HttpResponse
@@ -17,6 +18,7 @@ CREATE_ROLES = ["ta", "admin"]
 EDIT_ROLES = ["admin", "ta"]
 GET_ROLES = ["admin", "ta", "student"]
 ROOT_HTML = "/home/nginx/www/html/"
+MAX_QUESTIONS = 10
 
 def calcGrades(correct, total):
 
@@ -106,7 +108,7 @@ def getAssignments(request):
                 temp["id"] = assignment["id"]
                 temp["name"] = assignment["name"]
                 temp["start-date"] = assignment["start-date"]
-                temp["end-date"] = assignment["end-date"]
+                temp["end-date"] = assignment["end-date"]
                 try:
                     temp["grade"] = grades[assignment["id"]]
                 except Exception as e:
@@ -253,6 +255,12 @@ def studentGetQuestions(request, assignment):
            arrayToAdd.append(sa.format(question["question"], question["id"]))
         else:
            arrayToAdd.append("error") 
+
+    # randomize questions
+    random.shuffle(arrayToAdd)
+
+    # limit questions
+    arrayToAdd = arrayToAdd[:10]
 
     # put these questions in html
     buf = ""
