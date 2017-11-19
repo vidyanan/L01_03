@@ -1,0 +1,9 @@
+For our code review strategy, we have decided for this week we will have each person review someone elses code;
+	- Linahi will review Yathan's code by an RNG generator
+	- Jinming will Linahi's backend code
+	- Calvin will review Shoaib's and Jinming's
+	- Yathan will review Calvin's code
+	
+After the individual review, on Sunday we will have a meeting to discuss what needs improvment.
+Everyone will go through what they found (and this is what we will record for the video)
+After this everyone will improve their code with the suggestions before the final deliverable.
