@@ -2,6 +2,7 @@
 
 import time
 import json
+import random
 
 from django.http import QueryDict
 from django.http import HttpResponse
@@ -17,6 +18,70 @@ CREATE_ROLES = ["ta", "admin"]
 EDIT_ROLES = ["admin", "ta"]
 GET_ROLES = ["admin", "ta", "student"]
 ROOT_HTML = "/home/nginx/www/html/"
+MAX_QUESTIONS = 10
+
+def calcGrades(correct, total):
+
+    result = dict()
+
+    # make correctAnswers more easily searchable
+    correctCount = dict()
+    for assignment in correct:
+        correctCount[assignment["assignment"]] = assignment["correct"]
+
+    # calculate overall grade for each assignment
+    for assignment in total:
+        assignmentID = assignment["assignment"]
+        try:
+            result[assignmentID] = float(correctCount[assignmentID])/assignment["count"]
+
+        except Exception as e:
+            result[assignmentID] = 0.0
+
+    return result
+
+def getStudentGrades(userID):
+
+    correctAnswers = db.Query(
+    """    SELECT COUNT(`a`.`id`) as `correct` ,`q`.`assignment`
+           FROM `answers` as `a` JOIN `questions` as `q`
+           ON `a`.`question`=`q`.`id`
+           WHERE `a`.`answer`=`q`.`answer`
+           AND `a`.`user`=%s
+           GROUP BY `assignment`""", (userID,))
+
+    allAnswers = db.Query(
+    """   SELECT COUNT(`a`.`id`) as `count`, `q`.`id` as `assignment`
+          FROM (
+              SELECT * 
+              FROM `answers`
+              WHERE `user`=%s
+          )
+              AS `a` RIGHT JOIN `assignments` AS `q`
+          ON `a`.`assignment`=`q`.`id`
+          GROUP BY `q`.`id`""", (userID,))
+
+    return calcGrades(correctAnswers, allAnswers)
+
+def getAllGrades():
+
+    # Use this query if you want to implement a custom answer checking solution
+    # SELECT * FROM `answers` as `a` JOIN `questions` as `q` ON `a`.`question`=`q`.`id`
+
+    correctAnswers = db.Query(
+    """    SELECT COUNT(`a`.`id`) as `correct` ,`q`.`assignment`
+           FROM `answers` as `a` JOIN `questions` as `q`
+           ON `a`.`question`=`q`.`id`
+           WHERE `a`.`answer`=`q`.`answer`
+           GROUP BY `assignment`""", ())
+
+    allAnswers = db.Query(
+    """   SELECT COUNT(`a`.`id`) as `count`, `q`.`id` as `assignment`
+          FROM `answers` as `a` RIGHT JOIN `assignments` as `q`
+          ON `a`.`assignment`=`q`.`id`
+          GROUP BY `q`.`id`""", ())
+
+    return calcGrades(correctAnswers, allAnswers)
 
 def getAssignments(request):
     try:
@@ -31,18 +96,29 @@ def getAssignments(request):
                                 """,
                 ())
 
+            # assemble the grades before hand so that we reduce SQL queries
+            grades = dict()
+            if(request.session["user"]["role"] == "ta"):
+                grades = getAllGrades();
+            elif(request.session["user"]["role"] == "student"):
+                grades = getStudentGrades(request.session["user"]["ID"])
+
             for assignment in assignments:
                 temp = dict()
                 temp["id"] = assignment["id"]
                 temp["name"] = assignment["name"]
                 temp["start-date"] = assignment["start-date"]
                 temp["end-date"] = assignment["end-date"]
+                try:
+                    temp["grade"] = "%3.2f" % (grades[assignment["id"]]*100)
+                except Exception as e:
+                    return HttpResponse(json.dumps(grades), content_type="application/json")
                 arrayToAdd.append(temp)
             result["assignments"] = arrayToAdd
             return HttpResponse(json.dumps(result), content_type="application/json")
 
     except Exception as e:
-        return HttpResponse(e) 
+        return HttpResponse(json.dumps(e), content_type="application/json") 
 
 def createAssignment(request):
     try:
@@ -72,12 +148,16 @@ def createAssignment(request):
             except Exception as e:
                 inputs["errors"] = e
 
+        #    return HttpResponse(json.dumps(inputs), content_type="application/json")
+
+        
             return HttpResponse("""<html lang="en">
 <head>
 <meta http-equiv="refresh" content="0; url=/html/assignmentlist.html"/>
 </head>
 <body>{}</body>
 </html>""".format(json.dumps(inputs)))
+        
 
     except Exception as e:
         
@@ -145,6 +225,14 @@ def studentGetQuestions(request, assignment):
 
     # get a set of questions
     arrayToAdd = []
+
+    # Delete any old answers
+
+    db.Query(
+    """    DELETE FROM `answers`
+           WHERE `assignment`=%s
+           AND `user`=%s""", (assignment, request.session["user"]["ID"]))
+
     questions = db.Query(
     """    SELECT *
            FROM `questions`
@@ -171,6 +259,12 @@ def studentGetQuestions(request, assignment):
            arrayToAdd.append(sa.format(question["question"], question["id"]))
         else:
            arrayToAdd.append("error") 
+
+    # randomize questions
+    random.shuffle(arrayToAdd)
+
+    # limit questions
+    arrayToAdd = arrayToAdd[:10]
 
     # put these questions in html
     buf = ""
@@ -317,7 +411,7 @@ def submitQuestion(request, assignment):
                 
             return HttpResponse("""<html lang="en">
 <head>
-<meta http-equiv="refresh" content="0; url=/html/assignmentlist.html"/>
+<meta http-equiv="refresh" content="0; url=/html/assignmentliststudent.html"/>
 </head>
 <body>{}</body>
 </html>""")

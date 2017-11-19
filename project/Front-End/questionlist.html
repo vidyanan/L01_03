@@ -6,8 +6,8 @@
 		<meta charset="utf-8" />
 		<!-- webpage header -->
 		<link rel="stylesheet" href="/html/style.css">
-		<title>Assignment 1</title>
-		<object type="text/html" data="/html/navbarTA.html" width="100%" height="50"></object>
+		<title>Assignment</title>
+		<object type="text/html" data="navbarTA.html" width="100%" height="75"></object>
 		
 		
         <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
@@ -27,19 +27,7 @@
 
 		
 		<script type="text/javascript">
-
-			window.onload = function () {{
-    			var url = document.location.href,
-        		params = url.split('?')[1].split('&'),
-        		d = {{}}, tmp;
-        		console.log(params);
-    			for (var i = 0, l = params.length; i < l; i++) {{
-        			tmp = params[i].split('=');
-        			d[tmp[0]] = tmp[1];
-    			}}
-			}}
 	
-				
 			$.getJSON("http://www.yinlinhai.com/assignments/{0}/get/", function(data) {{
 				
 				var assignments = data["questions"];
