@@ -1,5 +1,13 @@
+# Code Review Strategy
+
+The standard formatting, and style guidelines we plan to follow are the following
+    - PEP8 for python
+    - W3C for HTML, Javascript, and CSS
+
+We will also be checking the code for modularity, and correctness
+
 For our code review strategy, we have decided for this week we will have each person review someone elses code;
-	- Linahi will review Yathan's code by an RNG generator
+	- Linhai will review Yathan's code by an RNG generator
 	- Jinming will Linahi's backend code
 	- Calvin will review Shoaib's and Jinming's
 	- Yathan will review Calvin's code

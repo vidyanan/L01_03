@@ -15,7 +15,6 @@
     /*background-image: url("./Assets/InsTABackground.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
 /* ---------TA/Instructor button----- */
@@ -238,9 +237,14 @@ body {
     max-width:66.666667%;
     position:relative;
 <<<<<<< HEAD
+<<<<<<< HEAD
     box-shadow: 5px 5px 5px grey;
 }
 =======
     box-shadow: 0px 0px 20px 5px grey;
 }
 >>>>>>> CC-welcomePage
+=======
+    box-shadow: 0px 0px 20px 5px grey;
+}
+>>>>>>> fa66db845a0e77017da3dc3af81a4568eaa7c13f
