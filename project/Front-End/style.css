@@ -17,6 +17,50 @@
     background-size: cover;
 }
 
+
+
+.cscc01 {
+	text-align:center;
+}
+/* asignment list */
+.assignmenttable {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
+.atable{
+	margin-left:auto; 
+	margin-right:auto;
+	border-spacing: 10px;
+}
+
+.createassignments{
+	text-align:center;
+}
+
+.studentinfo{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+
+.quizcreation{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+
+.questionlist{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+
+.createquestions{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
 /* ---------TA/Instructor button----- */
 .InsTAButton{
   /* size and position */
@@ -121,13 +165,14 @@
 input:focus {
     border: 3px solid #555;
 }
+
 input[type=text], input[type=password] {
     font-size: 3vmin;
-    width: 100%;
-    padding: 0.5vmin;
-    margin: 0.5vmin 0;
-    border: none;
-    border-bottom: 0.2vmin solid blue;
+     width: 100%;
+     padding: 0.5vmin;
+     margin: 0.5vmin 0;
+     border: none;
+     border-bottom: 0.2vmin solid blue;
 }
 /*global button*/
 input[type=submit], input[type=button]{
@@ -220,21 +265,18 @@ body {
 }
 
 .container {
-    padding-right:15px;
-    padding-left:15px;
-    padding-top:10px;
-    margin-right:auto;
-    margin-left:15%;
-    margin-top:55px;
+	margin: auto;
+	width: 50%;
+	padding: 10px;
 }
 
 .container-text {
+	text-align:center;
     padding:2rem 1rem;
     margin-bottom:2rem;
     background-color:#e9ecef;
     border-radius:.3rem;
     flex:0 0 66.666667%;
-    max-width:66.666667%;
     position:relative;
 <<<<<<< HEAD
 <<<<<<< HEAD
