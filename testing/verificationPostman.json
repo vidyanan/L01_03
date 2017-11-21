@@ -276,7 +276,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://www.yinlinhai.com/assignments/49/edit",
+					"raw": "http://www.yinlinhai.com/assignments/49/edit/",
 					"protocol": "http",
 					"host": [
 						"www",
@@ -286,7 +286,8 @@
 					"path": [
 						"assignments",
 						"49",
-						"edit"
+						"edit",
+						""
 					]
 				},
 				"description": "http://www.yinlinhai.com/assignments/49/edit"
@@ -357,7 +358,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://www.yinlinhai.com/assignments/49",
+					"raw": "http://www.yinlinhai.com/assignments/49/",
 					"protocol": "http",
 					"host": [
 						"www",
@@ -366,7 +367,8 @@
 					],
 					"path": [
 						"assignments",
-						"49"
+						"49",
+						""
 					]
 				},
 				"description": "http://www.yinlinhai.com/assignments/49"
@@ -388,7 +390,7 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "qq1",
+							"value": "q1",
 							"description": "",
 							"type": "text"
 						},
@@ -413,7 +415,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://www.yinlinhai.com/assignments/49/17",
+					"raw": "http://www.yinlinhai.com/assignments/49/17/",
 					"protocol": "http",
 					"host": [
 						"www",
@@ -423,7 +425,8 @@
 					"path": [
 						"assignments",
 						"49",
-						"17"
+						"17",
+						""
 					]
 				},
 				"description": "http://www.yinlinhai.com/assignments/49/17"
