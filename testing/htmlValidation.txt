@@ -1,0 +1,81 @@
+html Validation
+
+User Story 1: As professor, I need to create an assignment for each chapter with start date and end date
+	To create an assignment:
+		1. Login using Ins/Ta account
+		2. Click ¡®Assignments¡¯ tab on the top nav bar
+		3. Click ¡®Create Assignments¡¯ button
+		4. Enter the Assignment¡¯s name, start date and end date, then click ¡®Submit Request¡¯ button
+
+	Expected result:
+		A new assignment link shows up on the Assignment list page with the entered name, start date and end date
+	Actual result:
+		A new assignment link showed up on the Assignment list page with the info entered
+
+
+
+
+User Story 2: As professor, I need be able to create questions such as multiple choice, text input with the correct solution and the grade weight to each assignment
+	To add questions of an assignment:
+		1. Login using Ins/Ta account
+		2. Click ¡®Assignments¡¯ tab on the top nav bar
+		3. Click the assignment in the list that need to be edited
+		4. To create a new question:
+    		    -click ¡®Create Questions¡¯ button at the bottom of the page
+    		    -enter the question name, type, content and correct answer, then click 'Submit request' button
+    		    -the new question will be shown on the assignment page on successful operation
+		5. To add grade weight to each assignment:
+   		     not imppemented yet
+
+	Expected result:
+		A new question with the entered contents shows up in the assignment page
+		A grade weight shows up at the right side of the corresponding assignment
+	Actual result:
+		A new question shows up with entered content but only in short answer type
+                Can't enter grade weight yet
+
+
+
+User Story 3: As professor, I need to be able to edit questions and answers after creation
+	To edit an existed question:
+		1. Login using Ins/Ta account
+		2. Click ¡®Assignments¡¯ tab on the top nav bar
+		3. Click the assignment in the list that need to be edited
+		4. To edit an exsited question:
+   		    -click ¡®Edit¡¯ button in the question box that needed to be edited
+    		    -edit it¡¯s name, question and answer in space provided, then click ¡®Submit Request¡¯
+    		    -the edited question will be shown on the assignment page on successful operation
+
+	Expected result:
+		The question that edited shows up with new contents that entered
+	Actual result:
+		The question has been updated but still only of short answer type
+
+
+User Story 4: As student, I need to be able to take a quiz for each lesson
+	To take an assignment:
+		1. Login using student account
+		2. Click ¡®Assignments¡¯ tab on the top nav bar
+		3. Click the assignment in the list that need to take
+		4. Answer the questions in the space provided, then click 'Submit' button
+
+	Expected result:
+		Server take the info and redirect student to the assignment list page.
+	Actual result:
+		Redirected to the assignment list page correctly
+
+
+User Story 5: As professor, I need to create accounts for students and TA's' so that they can access quizzes remotely
+	To create an student account:
+		-Login using Ins/Ta account
+		-Click ¡®Account¡¯ tab on the top nav bar
+		-Enter students name, email and password, then click ¡®Submit¡¯
+	To create an TA account:
+		-where to create TA account
+
+	Expected result:
+		After create a student account, the account should be able to login at student login page only.
+		After create a TA account, the account should be able to login at Ins/Ta login page.
+	Actual result:
+		The student account that created is able to login at student login page.
+		Cant find bottun to create a TA account
