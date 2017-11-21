@@ -1,0 +1,434 @@
+{
+	"info": {
+		"name": "CSCC01",
+		"_postman_id": "a4ba4cd8-3904-f906-7739-364c957adaea",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "InstructorLogin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "email",
+						"value": "test"
+					},
+					{
+						"key": "password",
+						"value": "test"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://www.yinlinhai.com/login/",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"login",
+						""
+					]
+				},
+				"description": "http://www.yinlinhai.com/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "StudentLogin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "student",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "student",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://www.yinlinhai.com/login/",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"login",
+						""
+					]
+				},
+				"description": "http://www.yinlinhai.com/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "InvalidLogin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "testtest",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "testest",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://www.yinlinhai.com/login/",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"login",
+						""
+					]
+				},
+				"description": "http://www.yinlinhai.com/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://www.yinlinhai.com/logout",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"logout"
+					]
+				},
+				"description": "http://www.yinlinhai.com/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "getAssignments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://www.yinlinhai.com/assignments/get/",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"assignments",
+						"get",
+						""
+					]
+				},
+				"description": "http://www.yinlinhai.com/assignments/get/"
+			},
+			"response": []
+		},
+		{
+			"name": "createAssignments",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "A50",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "start-date",
+							"value": "2017-01-01 12:00:00",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "end-date",
+							"value": "2018-01-01 12:00:00",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://www.yinlinhai.com/assignments/",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"assignments",
+						""
+					]
+				},
+				"description": "http://www.yinlinhai.com/assignments/"
+			},
+			"response": []
+		},
+		{
+			"name": "editAssignments",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "A51",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "start-date",
+							"value": "2017-01-01 12:00:00",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "end-date",
+							"value": "2018-01-01 12:00:00",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://www.yinlinhai.com/assignments/49/edit",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"assignments",
+						"49",
+						"edit"
+					]
+				},
+				"description": "http://www.yinlinhai.com/assignments/49/edit"
+			},
+			"response": []
+		},
+		{
+			"name": "getQuestions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://www.yinlinhai.com/assignments/49/get",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"assignments",
+						"49",
+						"get"
+					]
+				},
+				"description": "http://www.yinlinhai.com/assignments/49/get"
+			},
+			"response": []
+		},
+		{
+			"name": "createQuestion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "q2",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "short-answer",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "question",
+							"value": "why?",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "answer",
+							"value": "yes",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://www.yinlinhai.com/assignments/49",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"assignments",
+						"49"
+					]
+				},
+				"description": "http://www.yinlinhai.com/assignments/49"
+			},
+			"response": []
+		},
+		{
+			"name": "editQuestion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "qq1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "short-answer",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "question",
+							"value": "why??",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "answer",
+							"value": "yeah",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://www.yinlinhai.com/assignments/49/17",
+					"protocol": "http",
+					"host": [
+						"www",
+						"yinlinhai",
+						"com"
+					],
+					"path": [
+						"assignments",
+						"49",
+						"17"
+					]
+				},
+				"description": "http://www.yinlinhai.com/assignments/49/17"
+			},
+			"response": []
+		}
+	]
+}
