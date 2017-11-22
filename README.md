@@ -5,15 +5,15 @@
 ## Presentations
 In here is the various HTML, images, and other files associated with the HTML page used for presentations and documentations.
 - Deliverable 1, due Sept 25 (introduction, team agreement)
-	- links/team.html, links/teammembers.html, links/meal.html, links/teamagreement.html
+	- team.html, teammembers.html, meal.html, teamagreement.html
 - Deliverable 2, due Oct 16 (personas, userstories)
-	- links/personas.html, links/userstories.html
+	- personas.html, userstories.html
 - Deliverable 3, due Oct 23 (userstories/tasks, dependencies, activity chart, burndown chart)
-	- links/userstories.html, links/sprintbacklog1.html 
+	- userstories.html, sprintbacklog1.html 
 - Deliverable 4, due Nov 6 (userstories/tasks, dependencies, activity chart, burndown chart, taskboards)
-	- links/sprintbacklog2.html, links/sprintbacklog3.html
+	- sprintbacklog2.html, sprintbacklog3.html
 - Deliverable 5, due Nov 20 (userstories/tasks, dependencies, activity chart, burndown chart, taskboards, codereview, testing)
-	- links/sprintbacklog4.html, links/sprintbacklog5.html
+	- sprintbacklog4.html, sprintbacklog5.html, sprintbacklog6.html, codereview/, testing/
 	
 ## Project
 In here is the actual code for the project.
