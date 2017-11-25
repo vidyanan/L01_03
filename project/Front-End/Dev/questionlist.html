@@ -1,0 +1,49 @@
+<!-- CSCC01 - L01_03 Project-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- webpage header -->
+		<link rel="stylesheet" href="/html/style.css">
+		<object type="text/html" data="/html/navbarTA.html" width="100%" height="75"></object>
+		<title>Question List</title>
+		
+		
+		
+        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div class="questionlist">
+			<h1 class='cscc01'>Question List</h1>
+
+			<div class="container">
+				<main role= "questions" id="question">
+
+				</main>
+			</div>
+
+			<input type="button" onclick="location.href='127.0.0.1/{0}/questioncreation.html';" value="Create Questions" />
+		</div>
+		
+		<script type="text/javascript">
+	
+			$.getJSON("127.0.0.1/assignments/{0}/get/", function(data) {{
+				
+				var assignments = data["questions"];
+				for(var i=0;i<assignments.length;i++){{
+					var button1 = `<input type="button" onclick="location.href='127.0.0.1/{0}/` + data["questions"][i]["id"] + `/questionedit.html';" value="Edit" />`
+					var text = '<div class="container-text"><h1>' + data["questions"][i]["name"] + "</h1><p>" + data["questions"][i]["type"] + '</p><p>' + data["questions"][i]["question"] + '</p><p>' + data["questions"][i]["answer"] + '</p>' + button1 + '</div>';
+					console.log(text);
+					document.getElementById("question").innerHTML += text;
+					
+				}}
+			}});
+
+		</script>
+		
+	</body>
+
+</html>
+

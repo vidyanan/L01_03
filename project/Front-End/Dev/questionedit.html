@@ -1,0 +1,35 @@
+<!-- CSCC01 - L01_03 Project-->
+
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="utf-8" />
+                <!-- webpage header -->
+                <link rel="stylesheet" href="/html/style.css">
+                <title>Question Edit</title>
+                <object type="text/html" data="/html/navbarTA.html" width="100%" height="75"></object>
+        </head>
+
+        <body>
+			<div class="createquestions">
+                <h1 class='cscc01'>Edit Question</h1>
+
+                <form id="question" action="127.0.0.1/assignments/{0}/{1}/" method="post">
+						  Brief Question Description:<br>
+						  <input type="text" name=name><br>
+						  <br>
+						  Question Type:<br>
+						  <input type="radio" name="type" value="multiple-choice"> Multiple Choice
+						  <input type="radio" name="type" value="short-answer"> Short Answer<br>
+						  <br>
+						  Question: (for multiple choice use format 'questionname;choice1:choice2:choice3:choice4')<br>
+						  <input type="text" name=question><br>
+						  <br>
+						  Correct Answer:<br>
+						  <input type="text" name=answer><br>
+						  <input type="submit" value="Submit Request" />
+                </form>
+			</div>
+        </body>
+</html>
+

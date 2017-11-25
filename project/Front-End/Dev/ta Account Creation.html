@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<title>TA Account Creation</title>
+		<object type="text/html" data="navbarTA.html" width="100%" height="50"></object>
+	</head>
+	
+	<body>
+
+	<h1>TA Account Creation</h1>
+
+	<form  action="127.0.0.1/account/ta/" method="post">
+		TA user name:<br>
+	  	<input class="ta-info" type="text" id=name="name" name="name">
+		<br>
+		TA email:<br>
+	  	<input class="ta-info" type="text" id="email" name="email">
+		<br>
+		TA password:<br>
+	  	<input class="ta-info" type="password" id="password" name="password">
+		<br>
+		OR Upload an Excel File:
+		<br>
+		<input type="file" name="excel" accept=".xlsx">
+		<br>
+		<br>
+		<input type="submit" value="Submit">
+	</form>  
+
+	</body>
+</html>

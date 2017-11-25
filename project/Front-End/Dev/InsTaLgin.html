@@ -1,0 +1,28 @@
+ <!DOCTYPE html>
+<html lang = "en">
+<!-- styling of form appearance-->
+<head><link rel="stylesheet" type="text/css" href="style.css"></head>
+<title>Instructor/TA Login</title>
+<!-- Body-->
+<body class="studentLogin"><script src="LoginCheck.js"></script>
+<!-- Title section of login page -->
+<div class="WebWorkTitle">
+	WebWork<br>
+</div>
+<!-- Log in frame of login page-->
+<div class="loginFrame">
+	<div class="loginFrame_Header">
+		Instructor Login</div>
+	<form class = "loginFrame_Form" action="127.0.0.1/login/" method="post">
+			Username:<br>
+			<input type="text" id="emai" name="email" placeholder="Username..." autofocus><br>
+			Password:<br>
+			<input type="password" name="password" placeholder="Password..."><br><br>
+		<input type="submit" name="submit" value="Log in"></form>
+	<div class="loginFrame_Footer">
+  	<a href="./studentLgin.html">Forget your password?</a><br>
+		<a href="./studentLgin.html">Learn more about WebWork</a></div>
+</div>
+
+</body>
+</html> 
