@@ -1,0 +1,58 @@
+1. install the following packagees
+    nginx
+    python-dev
+    python-pip
+    uwsgi
+    uwsgi-plugin-python
+    mysql-server
+    libmysqlclient-dev
+    python-django
+    python-django-common
+    
+
+sudo apt-get install nginx
+sudo apt-get install python-dev
+sudo apt-get install python-pip
+sudo apt-get install uwsgi
+sudo apt-get install uwsgi-plugin-python
+sudo apt-get install mysql-server
+mysql_secure_installation
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install python-django
+sudo apt-get install python-django-common
+
+sudo pip install PyMySql
+sudo pip install lxml
+
+https://github.com/CSCC01F17/L01_03
+
+
+Copy files
+from .. to /etc/nginx/nginx.conf
+
+
+setup uwsgi socket
+uwsgi --init ini files
+
+change files to Cgi
+
+
+sql
+CREATE TABLE django_content_type (id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, app_label VARCHAR(100) NOT NULL MULTIPLE, model varchar(100) NOT NULL);
+
+CREATE USER 'www'@'localhost' IDENTIFIED BY 'www';
+
+GRANT ALL PRIVILEGES ON www.* TO 'www'@'localhost';
+
+CREATE TABLE django_content_type (id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, app_label VARCHAR(100) NOT NULL MULTIPLE, model varchar(100) NOT NULL);
+
+Create table  django_session (session_key VARCHAR(40) NOT NULL PRIMARY KEY, session_data text NOT NULL, expire_date datetime NOT NULL);
+
+create table user (ID int(10) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT, name varchar(32), password varchar(32), email varchar(255), last_login datetime, enabled enum('yes', 'no') DEFAULT 'no', deleted enum('yes', 'no') default 'no', notes text, role varchar(100));
+
+create table questions (id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(511), type VARCHAR(511) NOT NULL, question VARCHAR(511) NOT NULL, answer VARCHAR(511) NOT NULL, assignment int(11));
+
+create table assignments (id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(511) NOT NULL, `start-date` VARCHAR(20), `end-date` VARCHAR(20));
+
+create table answers (id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, user int(11) NOT NULL, assignment int(11) NOT NULL, question int(11) NOT NULL, answer VARCHAR(255));
+
