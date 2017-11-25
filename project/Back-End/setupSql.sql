@@ -18,3 +18,7 @@ create table assignments (id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name V
 
 create table answers (id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, user int(11) NOT NULL, assignment int(11) NOT NULL, question int(11) NOT NULL, answer VARCHAR(255));
 
+INSERT INTO user (name, email, password, enabled, role) VALUES ('admin', 'admin', md5('admin'), 'yes', 'ta');
+
+INSERT INTO user (name, email, password, enabled, role) VALUES ('student', 'student', md5('student'), 'yes', 'student');
+

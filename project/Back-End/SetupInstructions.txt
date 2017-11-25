@@ -38,11 +38,13 @@ Tested on Ubuntu 16.04
 
     git clone https://github.com/CSCC01F17/L01_03
 
-7. Copy the Back-end code
+7. Copy the code over
 
     cp L01_03/project/Back-End/Cgi/ . -r
     cp L01_03/project/Back-End/init/ . -r
-    cp L01_03/project/Front-End/ html -r
+    mkdir html/
+    cp L01_03/project/Front-End/ html/ -r
+    cp L01_03/project/Front-End/Dev/* html/ -f
 
 8. Replace the prod config with the non-prod config
 

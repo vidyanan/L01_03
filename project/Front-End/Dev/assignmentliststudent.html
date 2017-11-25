@@ -41,7 +41,7 @@
 		<script type="text/javascript">
 	
 				
-			$.getJSON("127.0.0.1/assignments/get/", function(data) {
+			$.getJSON("http://127.0.0.1/assignments/get/", function(data) {
 				
 				//var ul = document.createElement('ul');
 				//console.log("hello");	
@@ -58,7 +58,7 @@
 					var cell4 = row.insertCell(3);
 					
 					var str = data["assignments"][i]["name"];
-					var link = "127.0.0.1/assignments/" + data["assignments"][i]["id"] + "/get/";
+					var link = "http://127.0.0.1/assignments/" + data["assignments"][i]["id"] + "/get/";
 					
 				    cell1.innerHTML = str.link(link);
 				    cell2.innerHTML = data["assignments"][i]["start-date"];
