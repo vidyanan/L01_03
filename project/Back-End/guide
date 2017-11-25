@@ -18,6 +18,11 @@ NOTE: you'll need to login at www.yinlinhai.com/html/login.htm to setup a sessio
     Required: name
     Creates an assignment
 
+/assignments/leaders/
+
+    METHOD: GET
+    Returns a list of leaders in grades
+
 
 /assignments/(assignmentID)/get
     

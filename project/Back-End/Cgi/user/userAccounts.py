@@ -14,6 +14,13 @@ from library import tools
 
 CREATE_STUDENT_ROLES = ["ta", "admin"]
 CREATE_TA_ROLES = ["admin"]
+REDIRECT_FORM = """<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url={}"/>
+</head>
+<body>{}</body>
+</html>"""
+
 
 def createStudent(request):
     try:
@@ -67,11 +74,6 @@ def createAccount(request, role):
     except Exception as e:
         inputs["errors"] = e
 
-    return HttpResponse("""<html lang="en">
-<head>
-<meta http-equiv="refresh" content="0; url=/html/{}%20Account%20Creation.html"/>
-</head>
-<body>{}</body>
-</html>""".format(role, json.dumps(inputs)))
+    return HttpResponse(REDIRECT_FORM.format("/html/{}%20Account%20Creation.html".format(role), json.dumps(inputs)))
 
 

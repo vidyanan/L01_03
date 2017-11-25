@@ -19,69 +19,42 @@ EDIT_ROLES = ["admin", "ta"]
 GET_ROLES = ["admin", "ta", "student"]
 ROOT_HTML = "/home/nginx/www/html/"
 MAX_QUESTIONS = 10
+REDIRECT_FORM = """<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url={}"/>
+</head>
+<body>{}</body>
+</html>"""
 
-def calcGrades(correct, total):
+def assembleGradeDict(sqlQuery):
 
-    result = dict()
+    temp = dict()
 
-    # make correctAnswers more easily searchable
-    correctCount = dict()
-    for assignment in correct:
-        correctCount[assignment["assignment"]] = assignment["correct"]
+    for element in sqlQuery:
 
-    # calculate overall grade for each assignment
-    for assignment in total:
-        assignmentID = assignment["assignment"]
         try:
-            result[assignmentID] = float(correctCount[assignmentID])/assignment["count"]
-
+            temp[element["assignment"]] = float(element["grade"])
         except Exception as e:
-            result[assignmentID] = 0.0
+            temp[element["assignment"]] = float(0.0)
 
-    return result
+    return temp
 
 def getStudentGrades(userID):
 
-    correctAnswers = db.Query(
-    """    SELECT COUNT(`a`.`id`) as `correct` ,`q`.`assignment`
-           FROM `answers` as `a` JOIN `questions` as `q`
-           ON `a`.`question`=`q`.`id`
-           WHERE `a`.`answer`=`q`.`answer`
-           AND `a`.`user`=%s
-           GROUP BY `assignment`""", (userID,))
+    grades = db.Query(
+        """ SELECT grade, assignment FROM grades WHERE user=%s""", (userID,))
 
-    allAnswers = db.Query(
-    """   SELECT COUNT(`a`.`id`) as `count`, `q`.`id` as `assignment`
-          FROM (
-              SELECT * 
-              FROM `answers`
-              WHERE `user`=%s
-          )
-              AS `a` RIGHT JOIN `assignments` AS `q`
-          ON `a`.`assignment`=`q`.`id`
-          GROUP BY `q`.`id`""", (userID,))
-
-    return calcGrades(correctAnswers, allAnswers)
+    return assembleGradeDict(grades)
 
 def getAllGrades():
 
-    # Use this query if you want to implement a custom answer checking solution
-    # SELECT * FROM `answers` as `a` JOIN `questions` as `q` ON `a`.`question`=`q`.`id`
+    grades = db.Query(
+        """ SELECT AVG(grade) AS grade, a.id AS assignment
+            FROM assignments AS a LEFT JOIN grades AS g
+                ON a.id=g.assignment
+            GROUP BY assignment""", ())
 
-    correctAnswers = db.Query(
-    """    SELECT COUNT(`a`.`id`) as `correct` ,`q`.`assignment`
-           FROM `answers` as `a` JOIN `questions` as `q`
-           ON `a`.`question`=`q`.`id`
-           WHERE `a`.`answer`=`q`.`answer`
-           GROUP BY `assignment`""", ())
-
-    allAnswers = db.Query(
-    """   SELECT COUNT(`a`.`id`) as `count`, `q`.`id` as `assignment`
-          FROM `answers` as `a` RIGHT JOIN `assignments` as `q`
-          ON `a`.`assignment`=`q`.`id`
-          GROUP BY `q`.`id`""", ())
-
-    return calcGrades(correctAnswers, allAnswers)
+    return assembleGradeDict(grades)
 
 def getAssignments(request):
     try:
@@ -110,7 +83,7 @@ def getAssignments(request):
                 temp["start-date"] = assignment["start-date"]
                 temp["end-date"] = assignment["end-date"]
                 try:
-                    temp["grade"] = "%3.2f" % (grades[assignment["id"]]*100)
+                    temp["grade"] = "%3.2f" % (grades[assignment["id"]])
                 except Exception as e:
                     return HttpResponse(json.dumps(grades), content_type="application/json")
                 arrayToAdd.append(temp)
@@ -151,12 +124,7 @@ def createAssignment(request):
         #    return HttpResponse(json.dumps(inputs), content_type="application/json")
 
         
-            return HttpResponse("""<html lang="en">
-<head>
-<meta http-equiv="refresh" content="0; url=/html/assignmentlist.html"/>
-</head>
-<body>{}</body>
-</html>""".format(json.dumps(inputs)))
+            return HttpResponse(REDIRECT_FORM.format("/html/assignmentlist.html", json.dumps(inputs)))
         
 
     except Exception as e:
@@ -191,12 +159,7 @@ def editAssignments(request, assignment):
             except Exception as e:
                 inputs["errors"] = e
 
-            return  HttpResponse("""<html lang="en">
-<head>
-<meta http-equiv="refresh" content="0; url=/html/assignmentlist.html"/>
-</head>
-<body>{}</body>
-</html>""".format(json.dumps(inputs)))
+            return  HttpResponse(REDIRECT_FORM.format("/html/assignmentlist.html", json.dumps(inputs)))
 
     except Exception as e:
 
@@ -328,12 +291,7 @@ def createQuestion(request, assignment):
             except Exception as e:
                 inputs["errors"] = e
 
-            return HttpResponse("""<html lang="en">
-<head>
-<meta http-equiv="refresh" content="0; url=/{}/questionlist.html"/>
-</head>
-<body>{}</body>
-</html>""".format(assignment, json.dumps(inputs)))
+            return HttpResponse(REDIRECT_FORM.format("/{}/questionlist.html".format(assignment), json.dumps(inputs)))
 
     except Exception as e:
 
@@ -373,12 +331,7 @@ def editQuestion(request, assignment, question):
             except Exception as e:
                 inputs["errors"] = e
 
-            return HttpResponse("""<html lang="en">
-<head>
-<meta http-equiv="refresh" content="0; url=/{}/questionlist.html"/>
-</head>
-<body>{}</body>
-</html>""".format(assignment, json.dumps(inputs)))
+            return HttpResponse(REDIRECT_FORM.format("/{}/questionlist.html".format(assignment), json.dumps(inputs)))
 
     except Exception as e:
 
@@ -409,11 +362,32 @@ def submitQuestion(request, assignment):
                            VALUES (%s, %s, %s, %s)""",
                            (request.session["user"]["ID"], assignment, key, request.POST[key]))
                 
-            return HttpResponse("""<html lang="en">
-<head>
-<meta http-equiv="refresh" content="0; url=/html/assignmentliststudent.html"/>
-</head>
-<body>{}</body>
-</html>""")
+            return HttpResponse(REDIRECT_FORM.format("/html/assignmentliststudent.html", json.dumps(inputs)))
     except Exception as e:
         return HttpResponse(json.dumps(e), content_type="application/json")
+
+def getLeaders(request):
+
+    try:
+
+        grades = db.Query(
+        """ SELECT AVG(g.grade) as grade, u.email as name
+            FROM (select email, id FROM user) as u JOIN grades as g
+                ON u.id = g.user
+            GROUP BY u.id
+            ORDER BY grade DESC""", ())
+
+
+        # assemble the return value
+        result = []
+        for row in grades:
+            temp = dict()
+            temp["user"] = row["name"]
+            temp["grade"] = row["grade"]
+            result.append(temp)
+
+        return HttpResponse(json.dumps(result), content_type="application/json")
+
+    except Exception as e:
+        return HttpResponse(json.dumps(e), content_type="application/json")
+
