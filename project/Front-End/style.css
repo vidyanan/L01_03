@@ -7,20 +7,66 @@
 /* ----@#$@#$@#$--------------Login Pages------@#$@#$@#$-----------------------------------*/
 /* -- login pages' body--*/
 .generalLogin {
-    background-image: url("./Assets/GeneralBackground.jpg");
+    /*background-image: url("./Assets/GeneralBackground.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
-}
-.studentLogin{
-    background-color: rgb(94, 154, 167);
-
 }
 .InsTALogin{
-    background-image: url("./Assets/InsTABackground.jpg");
+    /*background-image: url("./Assets/InsTABackground.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+
+
+.cscc01 {
+	text-align:center;
+}
+/* asignment list */
+.assignmenttable {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
+.atable{
+	margin-left:auto; 
+	margin-right:auto;
+	border-spacing: 10px;
+}
+
+.createassignments{
+	text-align:center;
+}
+
+.studentinfo{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+
+.quizcreation{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+
+.questionlist{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+
+.createquestions{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+
+.questionpage{
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
 /* ---------TA/Instructor button----- */
 .InsTAButton{
   /* size and position */
@@ -60,20 +106,21 @@
 }
 /*--general login page topside content*/
 .WebWorkTitle{
-  position: fixed;
+  /*position: fixed;*/
   /* size */
-  width: 100vw;
-  height: 25vh;
+  /*width: 100vw;
+  height: 25vh;*/
   /* position (always on top)*/
   top: 0;
   left: 0;
   /* style */
-  background-color: rgb(55, 143, 221);
+  /*background-color: rgb(55, 143, 221);*/
   /* font */
   font-size: 13vmin;
   overflow: hidden;
   font-weight: bold;
-  text-shadow: 0.5vmin 0.5vmin rgba(17, 115, 227,0.7);
+  text-align: center;
+  text-shadow: 0.5vmin 0.5vmin 10px rgba(17, 115, 227,0.7);
 
   animation-name: background_clr_chg;
   animation-duration: 10s;
@@ -89,9 +136,9 @@
     top: 30vh;
     left: 30vw;
     /* style */
-    border: 4px solid blue;
-    border-radius: 5% 5% 0 0;
-    box-shadow: 0.5vh 0.5vw darkblue;
+    /*border: 4px solid blue;*/
+    border-radius: 5% 5% 5% 5%;
+    box-shadow: 0px 0px 20px 2px darkblue;
     overflow: hidden;
 }
 .loginFrame_Header{
@@ -124,28 +171,36 @@
 input:focus {
     border: 3px solid #555;
 }
+
 input[type=text], input[type=password] {
     font-size: 3vmin;
-    width: 100%;
-    padding: 0.5vmin;
-    margin: 0.5vmin 0;
-    border: none;
-    border-bottom: 0.2vmin solid blue;
+     width: 100%;
+     padding: 0.5vmin;
+     margin: 0.5vmin 0;
+     border: none;
+     border-bottom: 0.2vmin solid blue;
 }
+/*global button*/
 input[type=submit], input[type=button]{
 	position: relative;
-    background-color: MediumSeaGreen;
+    background-color: #4484CE; /*MediumSeaGreen*/
     font-size: 3vmin;
-    width: 44%;
     border: none;
     color: white;
-    padding: 1vmin 1vmin;
+    padding: 1vmin 3vmin;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 
 
 /*----!@#!@$$!@#$ --End of Login pages------ !@#@#%!@#%--------------------------------------------*/
+
+body {
+  background-color: #CAEBF2;
+  margin: 0;
+  font-family: "Arial", Helvetica, sans-serif;
+}
  
 .navbar {
 	position: fixed;
@@ -156,7 +211,7 @@ input[type=submit], input[type=button]{
     top: 0;
     overflow: hidden;
     background-color: #333;
-    box-shadow: 5px 5px 5px grey;
+    box-shadow: 5px 5px 20px grey;
 }
 
 
@@ -193,7 +248,7 @@ input[type=submit], input[type=button]{
 
 .button-top {
 	text-align: center;
-    color: white;
+    color: #A9A9A9;
     padding: 14px 16px;
     text-decoration: none;
     display: inline;
@@ -206,8 +261,8 @@ input[type=submit], input[type=button]{
 }
 
 .button-top:hover {
-    background-color: black;
-    color: white;
+    color: #FF3B3F;
+
 }
 
 .active {
@@ -216,23 +271,28 @@ input[type=submit], input[type=button]{
 }
 
 .container {
-    width:100%;
-    padding-right:15px;
-    padding-left:15px;
-    padding-top:10px;
-    margin-right:auto;
-    margin-left:15%;
-    margin-top:55px;
+	margin: auto;
+	width: 50%;
+	padding: 10px;
 }
 
 .container-text {
+	text-align:center;
     padding:2rem 1rem;
     margin-bottom:2rem;
     background-color:#e9ecef;
     border-radius:.3rem;
-    -ms-flex:0 0 66.666667%;
     flex:0 0 66.666667%;
-    max-width:66.666667%;
     position:relative;
+<<<<<<< HEAD
+<<<<<<< HEAD
     box-shadow: 5px 5px 5px grey;
 }
+=======
+    box-shadow: 0px 0px 20px 5px grey;
+}
+>>>>>>> CC-welcomePage
+=======
+    box-shadow: 0px 0px 20px 5px grey;
+}
+>>>>>>> fa66db845a0e77017da3dc3af81a4568eaa7c13f

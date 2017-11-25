@@ -1,0 +1,40 @@
+Code Review on Calvin's files
+
+Welcome.html and WelcomeTA.html
+-code is simple, and organized with divs, and headers
+-there is a lot of duplicate code between the two files, maybe make an html file with the duplicated code
+ and use the following code to include another html file into both welcome.html and welcomeTA.html
+	<body>
+
+	<div w3-include-html="content.html"></div> 
+
+	<script>
+	w3.includeHTML();
+	</script>
+
+	</body>
+	
+	
+	
+questioncreation.html, questionedit.html
+-code is organized, with one header, and one form that takes in all the information
+-it would be better to use class name instead of id in form (might be hard to change and organize because of css)
+-class name for header not meaningful
+-almost everything is duplicated code, make a another file put the common stuff there and use an include, with JS
+ like above or something like this
+ <object type="text/html" data="/html/navbarTA.html" width="100%" height="50"></object>	
+ what we did to include our navabar
+ 
+ 
+questionlist.html
+- needs commenting in the javascript, not straight forward to understand
+- console.log, testing code needs to be removed in JS
+- follow 80 character per line limit, as per JS standards, easier to follow code this way
+- html is good, simple using mainly JS to insert to html
+
+navbar.html, navbarTA.html
+- code is good, there is duplicated buttons, but there is no point of creating another file
+  as we might have problems with our navbar
+
+questionpage.html, multipleChoiceTemplate.html, shortAnswerTemplate.html
+- these files need to be deleted ..
