@@ -1,14 +1,8 @@
 Tested on Ubuntu 16.04
 
 1. Install the following packages
-    git
-    nginx
-    python-pip
-    uwsgi
-    uwsgi-plugin-python
-    mysql-server
-    python-django
-    python-django-common
+
+    `sudo apt install git nginx python-pip uwsgi uwsgi-plugin-python mysql-server python-django python-django-common`
 
     
 1.5 Setup mysql root account
@@ -40,11 +34,11 @@ Tested on Ubuntu 16.04
 
 7. Copy the code over
 
-    `cp L01_03/project/Back-End/Cgi/ . -r
+    ```cp L01_03/project/Back-End/Cgi/ . -r
     cp L01_03/project/Back-End/init/ . -r
     mkdir html/
     cp L01_03/project/Front-End/ html/ -r
-    cp L01_03/project/Front-End/Dev/* html/ -f`
+    cp L01_03/project/Front-End/Dev/* html/ -f```
 
 8. Replace the prod config with the non-prod config
 

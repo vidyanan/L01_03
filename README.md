@@ -18,10 +18,13 @@ In here is the various HTML, images, and other files associated with the HTML pa
 ## Project
 In here is the actual code for the project.
 
-Open the following link;
+Follow the instructions in the following to setup the project on a local linux server
+https://github.com/CSCC01F17/L01_03/blob/back-end/project/Back-End/SetupInstructions.md
+
+Otherwise, go to the following link
 http://www.yinlinhai.com/html/lgin.html
 
-click instructor then login username: test password: test
+click instructor then login username: admin password: admin
 - click on accounts, to create student accounts (enter username, and password) you can use this to login into the student portal
 - click on assignments, to view all assignments
 	- you will then see a list of all created assignemnts
