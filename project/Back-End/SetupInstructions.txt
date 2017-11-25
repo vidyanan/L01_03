@@ -1,58 +1,71 @@
-1. install the following packagees
+1. Install the following packages
+    git
     nginx
-    python-dev
     python-pip
     uwsgi
     uwsgi-plugin-python
     mysql-server
-    libmysqlclient-dev
     python-django
     python-django-common
+
     
+1.5 Setup mysql root account
+    If mysql didn't automatically prompt you for a password for the root account run the following command:
 
-sudo apt-get install nginx
-sudo apt-get install python-dev
-sudo apt-get install python-pip
-sudo apt-get install uwsgi
-sudo apt-get install uwsgi-plugin-python
-sudo apt-get install mysql-server
-mysql_secure_installation
-sudo apt-get install libmysqlclient-dev
-sudo apt-get install python-django
-sudo apt-get install python-django-common
+    mysql_secure_installation
 
-sudo pip install PyMySql
-sudo pip install lxml
+2. Using pip, install the following modules
 
-https://github.com/CSCC01F17/L01_03
+    sudo pip install PyMySql lxml
+
+3. Create the nginx user
+
+    sudo adduser nginx
+    
+    sudo usermod -aG sudo nginx
+
+4. Sign in as nginx and prep directories
+
+    su nginx
+
+5. Make the following directories
+
+    mkdir /home/nginx/www
+
+6. In the directory you just made
+
+    git clone https://github.com/CSCC01F17/L01_03
+
+7. Copy the Back-end code
+
+    cp L01_03/project/Back-End/Cgi/ . -r
+    cp L01_03/project/Back-End/init/ . -r
+    cp L01_03/project/Front-End/ html -r
+
+8. Replace the prod config with the non-prod config
+
+    cp L01_03/project/Back-End/Dev/* . -r
+
+9. Copy the nginx conf file to /etc/nginx/nginx.conf
+
+    sudo cp init/nginx.conf /etc/nginx/nginx.conf
+
+    Nginx doesn't like the -c argument with ubunto 16 for some reason
 
 
-Copy files
-from .. to /etc/nginx/nginx.conf
+10. Setup the mysql server
 
+    mysql -u root -p <L01_03/project/Back-End/setupSql.sql
 
-setup uwsgi socket
-uwsgi --init ini files
+11. Start nginx
 
-change files to Cgi
+    sudo nginx
 
+12. Start uwsgi
 
-sql
-CREATE TABLE django_content_type (id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, app_label VARCHAR(100) NOT NULL MULTIPLE, model varchar(100) NOT NULL);
+    sudo uwsgi --ini init/uwsgi.ini
 
-CREATE USER 'www'@'localhost' IDENTIFIED BY 'www';
+Congratulations, the server is now running!
 
-GRANT ALL PRIVILEGES ON www.* TO 'www'@'localhost';
-
-CREATE TABLE django_content_type (id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, app_label VARCHAR(100) NOT NULL MULTIPLE, model varchar(100) NOT NULL);
-
-Create table  django_session (session_key VARCHAR(40) NOT NULL PRIMARY KEY, session_data text NOT NULL, expire_date datetime NOT NULL);
-
-create table user (ID int(10) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT, name varchar(32), password varchar(32), email varchar(255), last_login datetime, enabled enum('yes', 'no') DEFAULT 'no', deleted enum('yes', 'no') default 'no', notes text, role varchar(100));
-
-create table questions (id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(511), type VARCHAR(511) NOT NULL, question VARCHAR(511) NOT NULL, answer VARCHAR(511) NOT NULL, assignment int(11));
-
-create table assignments (id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(511) NOT NULL, `start-date` VARCHAR(20), `end-date` VARCHAR(20));
-
-create table answers (id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, user int(11) NOT NULL, assignment int(11) NOT NULL, question int(11) NOT NULL, answer VARCHAR(255));
+If you would like nginx and uwsgi to automatically restart, follow your distro's guide for systemd or its equivalent using the nginx.system, and uwsgi.system files in the init/ folder
 
