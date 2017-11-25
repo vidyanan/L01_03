@@ -1,10 +1,12 @@
-CREATE TABLE django_content_type (id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, app_label VARCHAR(100) NOT NULL MULTIPLE, model varchar(100) NOT NULL);
+CREATE DATABASE www;
 
 CREATE USER 'www'@'localhost' IDENTIFIED BY 'www';
 
 GRANT ALL PRIVILEGES ON www.* TO 'www'@'localhost';
 
-CREATE TABLE django_content_type (id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, app_label VARCHAR(100) NOT NULL MULTIPLE, model varchar(100) NOT NULL);
+USE www;
+
+CREATE TABLE django_content_type (id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, app_label VARCHAR(100) NOT NULL, model varchar(100) NOT NULL);
 
 Create table  django_session (session_key VARCHAR(40) NOT NULL PRIMARY KEY, session_data text NOT NULL, expire_date datetime NOT NULL);
 
