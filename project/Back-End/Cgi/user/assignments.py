@@ -108,9 +108,9 @@ def getAssignments(request):
                 temp["id"] = assignment["id"]
                 temp["name"] = assignment["name"]
                 temp["start-date"] = assignment["start-date"]
-                temp["end-date"] = assignment["end-date"]
+                temp["end-date"] = assignment["end-date"]
                 try:
-                    temp["grade"] = grades[assignment["id"]]
+                    temp["grade"] = "%3.2f" % (grades[assignment["id"]]*100)
                 except Exception as e:
                     return HttpResponse(json.dumps(grades), content_type="application/json")
                 arrayToAdd.append(temp)

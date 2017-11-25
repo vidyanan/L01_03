@@ -1,0 +1,14 @@
+[Unit]
+Description=uWSGI Service
+After=network.target mariadb.service
+
+[Service]
+ExecStart=/usr/sbin/uwsgi --ini /home/nginx/www/init/uwsgi.ini
+Restart=always
+KillSignal=SIGQUIT
+StandardError=syslog
+Type=notify
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
