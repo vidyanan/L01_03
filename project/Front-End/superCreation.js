@@ -11,10 +11,7 @@ function readFile(files) {
 	    filecontent = e.target.result;
       };
       reader.readAsText(file);
-
 }
-
-
 
 function createAccount() {
 	// get the entered email and password in the form

@@ -24,5 +24,5 @@ urlpatterns = patterns('',
     url(r'^([0-9]*)/([0-9]*)/questionedit.html$',	redirect.editQuestionPage,			name='getEditQuestionPage'),
     url(r'^([0-9]*)/questioncreation.html$',		redirect.createQuestionPage,		name='getCreateQuestionsPage'),
 
-    url(r'^admin/',						include('cgi.admin.urls')),
+    url(r'^admin/',						include('Cgi.admin.urls')),
 )
