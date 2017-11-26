@@ -4,10 +4,101 @@
     <link rel="stylesheet" href="style.css">
     <link rel="import" href="navbar.html">
     <object type="text/html" data="navbar.html" width="100%" height="75"></object>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	 
 </head>
 
 <body>
 
+	
+	<style>
+	#leaderboard {
+		float: right;
+		margin-right:2%;
+	    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	    border-collapse: collapse;
+	    
+	}
+
+	#leaderboard td, #leaderboard th {
+	    border: 1px solid #ddd;
+	    padding: 8px;
+	}
+
+	#leaderboard tr:nth-child(even){background-color: #f2f2f2;}
+	#leaderboard tr:nth-child(odd){background-color: #f2f2f2;}
+	
+	#leaderboard tr:hover {background-color: #ddd;}
+
+	#leaderboard th {
+	    padding-top: 12px;
+	    padding-bottom: 12px;
+	    text-align: left;
+	    background-color: #a3cbd8;
+	    color: white;
+	}
+	/* Flash class and keyframe animation */
+	.flashit{
+	  color:red;
+		-webkit-animation: flash linear 1s infinite;
+		animation: flash linear 1s infinite;
+	}
+	@-webkit-keyframes flash {
+		0% { opacity: 1; } 
+		50% { opacity: .1; } 
+		100% { opacity: 1; }
+	}
+	@keyframes flash {
+		0% { opacity: 1; } 
+		50% { opacity: .1; } 
+		100% { opacity: 1; }
+	}
+	</style>
+
+
+	<table id="leaderboard">
+	  <tr stlye="aign;centre;">
+	    <th class="flashit" colspan="2">LEADER BOARD</th>
+	  </tr>
+	  <tr>
+	    <th class="flashit">Student Name</th>
+	    <th class="flashit" >Grade</th>
+	  </tr>
+	  <tr>
+	    <td id="s1" class="flashit"></td>
+	    <td id="m1" class="flashit"></td>
+	  </tr>
+	  <tr>
+	    <td id="s2" class="flashit"></td>
+	    <td id="m2" class="flashit"></td>
+	  </tr>
+	  <tr>
+	    <td id="s3" class="flashit"></td>
+	    <td id="m3" class="flashit"></td>
+	  </tr>
+	</table>
+	
+		<script type="text/javascript">
+	
+				
+			$.getJSON("http://www.yinlinhai.com/assignments/leaders/", function(data) {
+
+				console.log(data);
+
+				var table = document.getElementById("leaderboard");
+				document.getElementById('s1').innerHTML = data[0].user;
+				document.getElementById('m1').innerHTML = String(data[0].grade);
+				
+				document.getElementById('s2').innerHTML = data[1].user;
+				document.getElementById('m2').innerHTML = String(data[1].grade);
+				
+				document.getElementById('s3').innerHTML = data[2].user;
+				document.getElementById('m3').innerHTML = String(data[2].grade);
+
+			});
+
+		</script>
+	
 <div class="container">
 	<div class="container-text WebWorkTitle">
     	Welcome
@@ -20,6 +111,8 @@
 	</div>
 
 </div>
+
+
 
 </body>
 </html>
