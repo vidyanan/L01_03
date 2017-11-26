@@ -70,7 +70,11 @@ def createAccount(request, role):
 
     try:
         if(hasEmail and hasPasswd):
-            db.Query("INSERT INTO `user` (`name`, `email`, `password`, `role`, `enabled`) VALUES (%s, %s, md5(%s), %s, %s)", (inputs["name"], inputs["email"], inputs["password"], role, "yes"))
+	    # input["email"]="em1 em2"
+  	    list_of_email=inputs["email"].split(" ");
+	    list_of_password=inputs["password"].split(" ");
+	    for i in range(0, len(list_of_email)):
+                db.Query("INSERT INTO `user` (`name`, `email`, `password`, `role`, `enabled`) VALUES (%s, %s, md5(%s), %s, %s)", (inputs["name"], list_of_email[i], list_of_password[i], role, "yes"))
     except Exception as e:
         inputs["errors"] = e
 
