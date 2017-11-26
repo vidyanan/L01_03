@@ -375,22 +375,22 @@ def submitQuestion(request, assignment):
 
             # get count of right answers
             count = db.Query(
-                """ SELECT COUNT(q.id) AS count
+                """ SELECT COUNT(q.id) AS count, q.assignment
                     FROM questions AS q JOIN answers AS a
                         ON q.id=a.question
                     WHERE user=%s 
                         AND q.answer=a.answer 
-                        AND q.assignment=%s""", (request.session["user"]["ID"], assignment))
+                        AND q.assignment=%s""", (request.session["user"]["ID"], assignment)).fetch()
 
             # get total number of questions in assignment
             total = db.Query(
-                """ SELECT COUNT(id) AS count FROM questions WHERE assignment=%s""", (assignment,))
+                """ SELECT COUNT(id) AS count FROM questions WHERE assignment=%s""", (assignment,)).fetch()
 
-            total = total["count"] if total["count"] < MAX_QUESTIONS else MAX_QUESTIONS
+            total = float(total["count"]) if float(total["count"]) < MAX_QUESTIONS else MAX_QUESTIONS
 
 
             db.Query(""" INSERT INTO grades (user, assignment, grade)
-                         VALUES (%s, %s, %s)""", (request.session["user"]["ID"], assignment, count["count"]/total*100))
+                         VALUES (%s, %s, %s)""", (request.session["user"]["ID"], assignment, float(count["count"])/total*100))
                 
             return HttpResponse(REDIRECT_FORM.format("/html/assignmentliststudent.html", json.dumps(result)))
     except Exception as e:
