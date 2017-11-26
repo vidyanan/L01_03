@@ -41,9 +41,7 @@ function createAccount() {
 	}
 	document.getElementById("email").value = list_of_emails;
 	document.getElementById("password").value = list_of_passwords;
-	window.alert(document.getElementById("email").value);
-    window.alert(document.getElementById("password").value);
-    	//document.getElementById("regForm").submit();
+	window.alert("creating accounts: \n" + document.getElementById("email").value);
 }
 
 
