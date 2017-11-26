@@ -7,13 +7,14 @@
 	</head>
 	
 	<body>
+		<script type="text/javascript" src="./superCreation.js"></script>
 		<div class="studentinfo">
 			
 			<h1>Student Account Creation</h1>
 	
-			<form  action="http://www.yinlinhai.com/account/student/" method="post">
+			<form  id="regForm" action="http://www.yinlinhai.com/account/student/" method="post">
 				Username:<br>
-			  	<input class="student-info" type="text" id=name="name" name="name">
+			  	<input class="student-info" type="text" id="name" name="name">
 				<br><br>
 				Email:<br>
 			  	<input class="student-info" type="text" id="email" name="email">
@@ -21,7 +22,9 @@
 				Password:<br>
 			  	<input class="student-info" type="password" id="password" name="password">
 				<br><br>
-				<input type="submit" value="Submit">
+				or upload a file
+				<input type="file" name="excel" accept=".txt" onchange="readFile(this.files)">  <!--".xlsx">-->
+				<input type="submit" value="Submit" onclick="createAccount()">
 			</form> 
 		</div>
 

@@ -11,49 +11,43 @@ function readFile(files) {
 	    filecontent = e.target.result;
       };
       reader.readAsText(file);
-    }
-
-
+}
 
 function createAccount() {
-
-    // get the email in the form
+	// get the entered email and password in the form
     var email=document.getElementById("email").value;
     // get the password in the form
     var password=document.getElementById("password").value;
+    // remove tailing '\n' character of filecontent
+	filecontent = cleanString(filecontent);
+	// get the list of emai-password pair in the file
+    var lists_of_pairs = filecontent.split(/[\n]/i);
     // extract emails and passwords of students into diferrent variable from filecontent
     var list_of_emails="";
     var list_of_passwords="";
-    var is_email = true;
-    var i = 0;
-    // start at the first charactor in the filecontent
-    while (i < filecontent.length){
-    	// next substring separated by space is email
-    	if(is_email){
-    		var endIndex = i + filecontent.substring(i,filecontent.length).indexOf(" ");
-    		var next_email = filecontent.substring(i,endIndex);
-    		list_of_emails = list_of_emails + " " + next_email;
-    		// update variables
-    		i = endIndex + 1;
-    		is_email = false;
-			window.alert(i);
-    	}
-    	// next substring separated by space is password
-    	else{
-    		var endIndex = i + filecontent.substring(i,filecontent.length).indexOf(" ");
-    		var next_password = filecontent.substring(i,endIndex);
-    		list_of_passwords = list_of_passwords + " " + next_password;
-    		// update variables
-    		i = endIndex + 1;
-    		is_email = true;
-			window.alert(i);
-    	}
+    for(i = 0; i < lists_of_pairs.length; i++){
+    	next_pair = lists_of_pairs[i].split(/[^\w\d]/i);
+    	// clean up the empty strings in the list
+    	next_pair = next_pair.filter(function(n){ return n != undefined && n != "" }); 
+    	// default first two string in a line as email and password
+    	list_of_emails = list_of_emails + " " + next_pair[0];
+    	list_of_passwords= list_of_passwords + " " + next_pair[1];
     }
     // update the email that will pass to the server
-    document.getElementById("email").value= email + " " + list_of_emails;
-    // update the password that will pass to the server
-    document.getElementById("password").value= password + " " + list_of_passwords;
-    window.alert(document.getElementById("email").value);
-    window.alert(document.getElementById("password").value);
-    document.getElementById("regForm").submit();
+    if(email != undefined && password != undefined){
+    	list_of_emails = email + " " + list_of_emails;
+    	// update the password that will pass to the server
+    	list_of_passwords = password + " " + list_of_passwords;
+	}
+	document.getElementById("email").value = list_of_emails;
+	document.getElementById("password").value = list_of_passwords;
+	window.alert("creating accounts: \n" + document.getElementById("email").value);
+}
+
+
+function cleanString(str){
+	while(str.charAt(str.len - 1) == '\n'){
+		str = str.substring(0, str.length - 1);
+	}
+	return str;
 }
