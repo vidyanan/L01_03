@@ -42,7 +42,13 @@ def assembleGradeDict(sqlQuery):
 def getStudentGrades(userID):
 
     grades = db.Query(
-        """ SELECT grade, assignment FROM grades WHERE user=%s""", (userID,))
+        """ SELECT grade, a.id AS assignment
+            FROM  assignments AS a
+                LEFT JOIN
+                    (SELECT *
+                     FROM grades
+                     WHERE user=%s) AS g
+                ON a.id=g.assignment""", (userID,))
 
     return assembleGradeDict(grades)
 
@@ -52,7 +58,7 @@ def getAllGrades():
         """ SELECT AVG(grade) AS grade, a.id AS assignment
             FROM assignments AS a LEFT JOIN grades AS g
                 ON a.id=g.assignment
-            GROUP BY assignment""", ())
+            GROUP BY a.id""", ())
 
     return assembleGradeDict(grades)
 
@@ -196,10 +202,15 @@ def studentGetQuestions(request, assignment):
            WHERE `assignment`=%s
            AND `user`=%s""", (assignment, request.session["user"]["ID"]))
 
+    db.Query(
+    """    DELETE FROM `grades`
+           WHERE `assignment`=%s
+           AND `user`=%s""", (assignment, request.session["user"]["ID"]))
+
     questions = db.Query(
     """    SELECT *
            FROM `questions`
-           WHERE `assignment`=%s""", (assignment))
+           WHERE `assignment`=%s""", (assignment,))
 
     # fill in questions into multiple divs
     mc = open(ROOT_HTML + "multipleChoiceTemplate.html", 'r').read()
@@ -237,7 +248,7 @@ def studentGetQuestions(request, assignment):
     finHtml = open(ROOT_HTML + "questionpage.html", 'r').read()
 
     # pull assignment information
-    assignment = db.Query("SELECT * FROM `assignments` WHERE `id`=%s""", (str(assignment))).fetch()
+    assignment = db.Query("SELECT * FROM `assignments` WHERE `id`=%s""", (assignment,)).fetch()
 
     # return html
 
@@ -361,10 +372,29 @@ def submitQuestion(request, assignment):
                            (user, assignment, question, answer)
                            VALUES (%s, %s, %s, %s)""",
                            (request.session["user"]["ID"], assignment, key, request.POST[key]))
+
+            # get count of right answers
+            count = db.Query(
+                """ SELECT COUNT(q.id) AS count
+                    FROM questions AS q JOIN answers AS a
+                        ON q.id=a.question
+                    WHERE user=%s 
+                        AND q.answer=a.answer 
+                        AND q.assignment=%s""", (request.session["user"]["ID"], assignment))
+
+            # get total number of questions in assignment
+            total = db.Query(
+                """ SELECT COUNT(id) AS count FROM questions WHERE assignment=%s""", (assignment,))
+
+            total = total["count"] if total["count"] < MAX_QUESTIONS else MAX_QUESTIONS
+
+
+            db.Query(""" INSERT INTO grades (user, assignment, grade)
+                         VALUES (%s, %s, %s)""", (request.session["user"]["ID"], assignment, count["count"]/total*100))
                 
-            return HttpResponse(REDIRECT_FORM.format("/html/assignmentliststudent.html", json.dumps(inputs)))
+            return HttpResponse(REDIRECT_FORM.format("/html/assignmentliststudent.html", json.dumps(result)))
     except Exception as e:
-        return HttpResponse(json.dumps(e), content_type="application/json")
+        return HttpResponse(e, content_type="application/json")
 
 def getLeaders(request):
 
