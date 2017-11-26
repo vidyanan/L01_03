@@ -6,9 +6,22 @@ Tested on Ubuntu 16.04
 
     
 1.5 Setup mysql root account
-    If mysql didn't automatically prompt you for a password for the root account run the following command:
+    (If mysql didn't automatically prompt you for a password for the root account run the following command:)
 
     `mysql_secure_installation`
+    
+    Login to mysql
+    `mysql -u root -p`
+    
+    Run the following line
+    `uninstall plugin validate_password;`
+    
+    Disconnect from the mysql DB
+    
+1.7 Kill the current Nginx process
+    (nginx likes running from install)
+    
+    `sudo nginx -s stop`
 
 2. Using pip, install the following modules
 
@@ -37,7 +50,7 @@ Tested on Ubuntu 16.04
     ```cp L01_03/project/Back-End/Cgi/ . -r
     cp L01_03/project/Back-End/init/ . -r
     mkdir html/
-    cp L01_03/project/Front-End/ html/ -r
+    cp L01_03/project/Front-End/* html/
     cp L01_03/project/Front-End/Dev/* html/ -f```
 
 8. Replace the prod config with the non-prod config
